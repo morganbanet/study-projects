@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "6522d66c0024cbaf1b2d00e9",
+    "name": "Headphones",
+    "tabPosition": 1,
+    "image": "/images/shared/desktop/image-category-thumbnail-headphones.png"
+  },
+  {
+    "_id": "6522d66c0024cbaf1b2d00ea",
+    "name": "Speakers",
+    "tabPosition": 2,
+    "image": "/images/shared/desktop/image-category-thumbnail-speakers.png"
+  },
+  {
+    "_id": "6522d66c0024cbaf1b2d00eb",
+    "name": "Earphones",
+    "tabPosition": 3,
+    "image": "/images/shared/desktop/image-category-thumbnail-earphones.png"
+  }
+]

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Documentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="sticky-container">
+    <div class="sticky-nav featured"><a href="#/"><span class="bold">Getting Help</span></a></div>
+    <div class="sticky-nav language"><a href="#/">Language: <span class="bold">en</span></a></div>
+    <div class="sticky-nav version"><a href="#/">Documentation version: <span class="bold">4.1</span></a></div>
+  </div>
+
+  <header class="nav-header">
+    <nav class="primary-nav-bar">
+      <a href="#/"><img id="logo" src="https://www.djangoproject.com/m/img/logos/django-logo-negative.png"></a>
+      <p>The web framework for perfectionists with deadlines.</p>
+      <ul>
+        <li><a href="#/">Overview</a></li>
+        <li><a href="#/">Download</a></li>
+        <li><a href="#/" id="current">Documentation</a></li>
+        <li><a href="#/">News</a></li>
+        <li><a href="#/">Community</a></li>
+        <li><a href="#/">Code</a></li>
+        <li><a href="#/">Issues</a></li>
+        <li><a href="#/">About</a></li>
+        <li><a href="#/">Donate</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <header>
+    <div id="secondary-navbar-container">
+      <div class="secondary-navbar featured-heading">
+        <a href="#/">Documentation</a>
+      </div>
+      <div class="secondary-navbar search-bar">
+        <input id="search-bar" type="text" placeholder="Search 4.1 documentation (Ctrl + K)" accesskey="k">
+      </div>
+    </div>
+  </header>
+
+  <main id="main-doc">
+
+    <section class="main-section" id="Django_documentation">
+      <header>
+        <h1>Django documentation</h1>
+      </header>
+      <p>Everything you need to know about Django.
+      <p>
+    </section>
+
+    <section class="main-section" id="First_Steps">
+      <header>
+        <h2>First steps</h2>
+      </header>
+      <p>Are you new to Django or to programming? This is the place to start!
+      <p>
+      <ul>
+        <li>
+          <span class="bold">From scratch:</span> <a href="#/">Overview</a> |
+          <a href="#/">Installation</a>
+        </li>
+        <li>
+          <span class="bold">Tutorial:</span>
+          <a href="#/">Part 1: Requests and responses</a> |
+          <a href="#/">Part 2: Models and the admin site</a> |
+          <a href="#/">Part 3: Views and templates</a> |
+          <a href="#/">Part 4: Forms and generic views</a> |
+          <a href="#/">Part 5: Testing</a> |
+          <a href="#/">Part 6: Static files</a> |
+          <a href="#/">Part 7: Customizing the admin site</a>
+        </li>
+        <li>
+          <span class="bold">Advanced Tutorials:</span>
+          <a href="#/">How to write reusable apps</a> |
+          <a href="#/">Writing your first patch for Django</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="main-section" id="How_The_Documentation_Is_Organised">
+      <header>
+        <h2>How the documentation is organised</h2>
+      </header>
+      <p>Django has a lot of documentation. A high-level overview of how it’s
+        organized will help you know where to look for certain things:
+      <p>
+      <ul>
+        <li>
+          Tutorials take you by the hand through a series of steps to create a
+          web application. Start here if you’re new to Django or web application
+          development. Also look at the “First steps”.
+        </li>
+        <li>
+          Topic guides discuss key topics and concepts at a fairly high level
+          and provide useful background information and explanation.
+        </li>
+        <li>
+          Reference guides contain technical reference for APIs and other
+          aspects of Django’s machinery. They describe how it works and how to
+          use it but assume that you have a basic understanding of key concepts.
+        </li>
+        <li>
+          How-to guides are recipes. They guide you through the steps involved
+          in addressing key problems and use-cases. They are more advanced than
+          tutorials and assume some knowledge of how Django works.
+        </li>
+      </ul>
+    </section>
+
+    <section class="main-section" id="The_model_layer">
+      <header>
+        <h2>The model layer</h2>
+      </header>
+      <p>
+        Django provides an abstraction layer (the “models”) for structuring and
+        manipulating the data of your web application. Learn more about it
+        below:
+      </p>
+      <ul>
+        <li>
+          <span class="bold">Models:</span>
+          <a href="#/">Introduction to models</a> |
+          <a href="#/">Field types</a> |
+          <a href="#/">Indexes</a> |
+          <a href="#/">Meta options</a> |
+          <a href="#/">Model class</a>
+        </li>
+        <li>
+          <span class="bold">Querysets:</span>
+          <a href="#/">Making queries</a> |
+          <a href="#/">QuerySet method reference</a> |
+          <a href="#/">Lookup expressions</a>
+        </li>
+        <li>
+          <span class="bold">Model instances:</span>
+          <a href="#/">Instance methods</a> |
+          <a href="#/">Accessing related objects</a>
+        </li>
+        <li>
+          <span class="bold">Migrations:</span>
+          <a href="#/">Introduction to migrations</a> |
+          <a href="#/">Operations reference</a> |
+          <a href="#/">SchemaEditor</a> |
+          <a href="#/">Writing migrations</a>
+        </li>
+        <li>
+          <span class="bold">Advanced:</span>
+          <a href="#/">Managers</a> |
+          <a href="#/">Raw SQL</a> |
+          <a href="#/">Transactions</a> |
+          <a href="#/">Aggregation</a> |
+          <a href="#/">Search</a>
+          <a href="#/">Custom fields</a> |
+          <a href="#/">Multiple databases</a> |
+          <a href="#/">Custom lookups</a> |
+          <a href="#/">Query Expressions</a> |
+          <a href="#/">Conditional Expressions</a> |
+          <a href="#/">Database Functions</a>
+        </li>
+        <li>
+          <span class="bold">Other:</span>
+          <a href="#/">Supported databases</a> |
+          <a href="#/">Legacy databases</a> |
+          <a href="#/">Providing initial data</a> |
+          <a href="#/">Optimize database access</a> |
+          <a href="#/">PostgreSQL specific features</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="main-section" id="The_Django_open_source_project">
+      <header>
+        <h2>The Django open source project</h2>
+      </header>
+      <p>
+        Learn about the development process for the Django project itself and
+        about how you can contribute:
+      </p>
+      <ul>
+        <li>
+          <span class="bold">Community:</span>
+          <a href="#/">How to get involved</a> |
+          <a href="#/">The release process</a> |
+          <a href="#/">Team organization</a> |
+          <a href="#/">The Django source code repository</a> |
+          <a href="#/">Model Security policies</a> |
+          <a href="#/">Mailing lists</a>
+        </li>
+        <li>
+          <span class="bold">Design Philosophies:</span>
+          <a href="#/">Overview</a>
+        </li>
+        <li>
+          <span class="bold">Documentation:</span>
+          <a href="#/">About this documentation</a>
+        </li>
+        <li>
+          <span class="bold">Third-party distributions:</span>
+          <a href="#/">Overview</a>
+        </li>
+        <li>
+          <span class="bold">Django over time</span>
+          <a href="#/">API stability</a> |
+          <a href="#/">Release notes and upgrading instructions</a> |
+          <a href="#/">Deprecation Timeline</a>
+        </li>
+      </ul>
+    </section>
+
+    <div id="bottom-navigation">
+      <span class="bold"><a href="#/" class="back-button">
+          < Django documentation contents</a></span>
+      <span class="bold"><a href="#/" class="forward-button">Getting started ></a></span>
+    </div>
+
+  </main>
+
+  <nav id="navbar">
+    <header>
+      <section id="support_django">
+        <h2>Support Django!</h2>
+        <div id="support-container">
+          <img id="heart-icon" src="https://static.djangoproject.com/img/fundraising-heart.cd6bb84ffd33.svg">
+          <a href="#/" id="donation">skyhour donated to the Django Software Foundation to support Django
+            development.Donate today!</a>
+        </div>
+      </section>
+
+      <section id="browse">
+        <h2>Browse</h2>
+        <ul>
+          <li>
+            <a href="#Django_documentation" class="nav-link">Django
+              documentation</a>
+          </li>
+          <li>
+            <a href="#First_Steps" class="nav-link">First steps</a>
+          </li>
+          <li><a href="#How_The_Documentation_Is_Organised" class="nav-link">
+              How the documentation is organised</a></li>
+          <li><a href="#The_model_layer" class="nav-link">
+              The model layer</a></li>
+          <li><a href="#The_Django_open_source_project" class="nav-link">
+              The Django open source project</a></li>
+        </ul>
+      </section>
+
+      <section id="you_are_here">
+        <h2>You are here:</h2>
+        <ul>
+          <li><a href="#/">Django 4.1 documentation</a>
+            <ul>
+              <li>Django Documentation</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section id="getting_help">
+        <h2>Getting help</h2>
+        <article>
+          <h3><a href="#/">FAQ</a></h3>
+          <p>Try the FAQ - it's got answers to many common questions.</p>
+        </article>
+        <article>
+          <h3><a href="#/">Index, Module Index</a>, or <a href="#/">Table of Contents</a></h3>
+          <p>Handy when looking for specific information</p>
+        </article>
+        <article>
+          <h3><a href="#/">django-users mailing list</a></h3>
+          <p>
+            Search for information in the archives of the django-users
+            mailing list, or post a question.
+          </p>
+        </article>
+        <article>
+          <h3><a href="#/">#django IRC channel</a></h3>
+          <p>
+            Ask a question in the #django IRC channel, or search the IRC logs
+            to see if it's been asked before.
+          </p>
+        </article>
+        <article>
+          <h3><a href="#/">Django Discord Server</a></h3>
+          <p>Join the Django Discord Community.</p>
+        </article>
+        <article>
+          <h3><a href="#/">Official Django Forum</a></h3>
+          <p>Join the community on the Django Forum</p>
+        </article>
+        <article>
+          <h3><a href="#/">Ticket tracker</a></h3>
+          <p>
+            Report bugs with Django or Django documentation in our ticket
+            tracker.
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Download:</h2>
+        <p>
+          Offline (Django 4.1): <a href="#/">HTML</a> | <a href="#/">PDF</a> |
+          <a href="#/">ePub</a>
+        </p>
+        <p>Provided by Read the Docs</p>
+    </header>
+    </section>
+  </nav>
+
+  <footer id="primary-footer">
+    <div class="footer-div learn-more">
+      <h4>Learn More</h4>
+      <ul>
+        <li>About Django</li>
+        <li>Getting Started with Django</li>
+        <li>Team Organization</li>
+        <li>Django Software Foundation</li>
+        <li>Code of Conduct</li>
+        <li>Diversity Statement</li>
+      </ul>
+    </div>
+
+    <div class="footer-div get-involved">
+      <h4>Get Involved</h4>
+      <ul>
+        <li>Join a Group</li>
+        <li>Contribute to a group</li>
+        <li>Submit a bug</li>
+        <li>Report a Security issue</li>
+      </ul>
+    </div>
+
+    <div class="footer-div get help">
+      <h4>Get help</h4>
+      <ul>
+        <li>Getting Help FAQ</li>
+        <li>#django IRC channel</li>
+        <li>Django Discord</li>
+        <li>Official Django Forum</li>
+      </ul>
+    </div>
+
+    <div class="footer-div follow us">
+      <h4>Follow us</h4>
+      <ul>
+        <li>GitHub</li>
+        <li>Twitter</li>
+        <li>News RSS</li>
+        <li>Django Users Mailing List</li>
+      </ul>
+    </div>
+
+    <div class="footer-div support us">
+      <h4>Support Us</h4>
+      <ul>
+        <li>Sponsor Django</li>
+        <li>Official Merchandise Store</li>
+        <li>Benevity Workplace Giving Program</li>
+      </ul>
+    </div>
+
+  </footer>
+
+  <footer id="secondary-footer">
+
+    <div class="secondary-footer-div">
+      <div class="secondary-footer-section logo">
+        <a href="#/"><img id="logo-footer" src="https://www.djangoproject.com/m/img/logos/django-logo-negative.png"></a>
+      </div>
+
+      <div class="secondary-footer-section hosting">
+        <h5>Hosting by</h5>
+        <p><a href="#/">In-kind donors</a></p>
+      </div>
+
+      <div class="secondary-footer-section design">
+        <h5>Design by</h5>
+        <p><a href="#/">threespot</a> <span id="ampersand">&</span> <a href="#/"> andrevv</a>
+      </div>
+    </div>
+    <p id="trademark">Replica of Django Documentation page made with ❤️ by Alex M</p>
+  </footer>
+</body>
+
+</html>

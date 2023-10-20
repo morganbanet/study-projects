@@ -1,0 +1,93 @@
+body {
+    background: url("https://i0.wp.com/www.templatescatalog.com/wp-content/uploads/2020/08/Roasted-coffee-beans-wallpaper.jpg?fit=1600%2C1067&ssl=1");
+    background-size: cover;
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.menu {
+    background-color: #9c7c6a;
+    width: 40%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 8px;
+    opacity: 97%;
+}
+
+.established {
+    text-align: center;
+    font-style: italic;
+}
+
+.food, .price {
+    display: inline-block;
+}
+
+.item p {
+    width: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.price {
+    text-align: right;
+}
+
+h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 40px;
+}
+
+h1, h2 {
+    text-align: center;
+    font-family: impact, serif;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+hr {
+    height: 2px;
+    border-color: brown;
+    background-color: brown;
+}
+
+.bottombreak {
+    margin-top: 25px;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -15px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    font-size: 14px;
+}
+
+.address {
+    margin-bottom: 0px;
+}
+
+a:link {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
+
+a:hover {
+    color: white;
+}

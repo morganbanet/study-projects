@@ -1,0 +1,191 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  background: linear-gradient(to bottom right, blue, pink);
+}
+
+header {
+  height: 50px;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+header p {
+  font-size: 20px;
+  color: white;
+  font-weight: 600;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.middle {
+  height: 50vh;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.number,
+.title {
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: white;
+}
+
+.number {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-size: 5rem;
+  border-radius: 50%;
+  border: 2 solid aqua;
+  box-shadow: 0 0 10px 10px aqua;
+  color: rgb(49, 49, 49);
+  font-weight: 700;
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding: 50px;
+}
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  align-items: center;
+  margin-left: 100px;
+  margin-right: 20px;
+}
+
+.right {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 4px;
+  width: 204px;
+  border: none;
+  height: 50px;
+  font-size: 20px;
+}
+
+.check {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.btn:hover {
+  box-shadow: 0 0 10px 5px aqua;
+  transition: 150ms ease-in-out;
+  cursor: pointer;
+}
+
+.guess {
+  height: 75px;
+  width: 200px;
+  text-align: center;
+  border-radius: 4px;
+  border: none;
+  font-size: 50px;
+}
+
+.right p {
+  font-size: 20px;
+  margin: 0;
+  line-height: 2;
+  color: white;
+  font-weight: 600;
+  width: 300px;
+}
+
+.right p:nth-of-type(1) {
+  position: relative;
+  bottom: 15px;
+}
+
+/* --- Modal --- */
+.overlay {
+  background-color: rgba(0, 0, 0, 30%);
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+}
+
+.modal {
+  background-color: white;
+  position: absolute;
+  z-index: 10;
+  width: 40%;
+  height: 40%;
+  border-radius: 10px;
+  border: none;
+  padding: 50px;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+.btn.exit {
+  background-color: white;
+  font-size: 24px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal h2 {
+  margin: 0;
+  text-align: center;
+}
+
+a:active {
+  color: black;
+}
+
+a {
+  color: palevioletred;
+  text-decoration: none;
+}

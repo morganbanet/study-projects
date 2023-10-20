@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Fonts CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./favicons/site.webmanifest" />
+
+    <!-- Own stylesheet and scripts -->
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Pirate, Kraken, Treasure</title>
+  </head>
+
+  <body>
+    <header><h1>PIRATE KRAKEN TREASURE</h1></header>
+
+    <main>
+      <p class="log-top">Ahoy, mateys! Ready for a game o' fun? Arrr!</p>
+      <p class="log-bottom">Make a move to start</p>
+
+      <div class="state-wrapper">
+        <!-- Player card -->
+        <div class="outer-card-wrapper player">
+          <div class="hp player">
+            <div class="amount"></div>
+          </div>
+          <div class="inner-card-wrapper player">
+            <div class="chosen-box player">
+              <img class="hidden" src="" alt="" />
+            </div>
+            <p class="user player">
+              Player: <span class="player-points">0</span>
+            </p>
+            <p class="win player hidden">PLAYER WINS!</p>
+          </div>
+        </div>
+
+        <div class="reset-desktop hidden">
+          <i class="fa-solid fa-rotate"></i>
+          <p>Reset</p>
+        </div>
+
+        <!-- Enemy card -->
+        <div class="outer-card-wrapper enemy">
+          <div class="inner-card-wrapper enemy">
+            <div class="chosen-box enemy">
+              <img class="hidden" src="" alt="" />
+            </div>
+            <p class="user enemy">Enemy: <span class="enemy-points">5</span></p>
+            <p class="win enemy hidden">ENEMY WINS!</p>
+          </div>
+          <div class="hp enemy">
+            <div class="amount"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls-wrapper">
+        <div class="choice-box pirate">
+          <img src="images/pirate.png" alt="pirate.png" />
+        </div>
+        <div class="choice-box kraken">
+          <img src="images/kraken.png" alt="kraken.png" />
+        </div>
+        <div class="choice-box treasure">
+          <img src="images/treasure.png" alt="treasure.png" />
+        </div>
+      </div>
+
+      <p class="hint">
+        Pirate beats Treasure | Treasure beats Kraken | Kraken beats Pirate
+      </p>
+
+      <div class="options-wrapper">
+        <div class="audio">
+          <i class="fa-solid fa-volume-xmark music-symbol"></i>
+          <div class="volume">
+            <div class="percent"><p>72%</p></div>
+            <div class="amount"></div>
+          </div>
+        </div>
+
+        <div class="reset-mobile disabled">
+          <i class="fa-solid fa-rotate"></i>
+          <p>Reset</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-wrapper">
+        <p>
+          Carefully forged by the seasoned Captain
+          <a href="https://github.com/morganbanet" target="_blank"
+            ><span class="author">MorganBA</span></a
+          >, aye, who sailed the treacherous seas, battled fierce storms, and
+          looted countless treasures, arrr!
+        </p>
+      </div>
+    </footer>
+
+    <img class="backdrop" src="images/backdrop-crop.png" alt="backdrop.png" />
+
+    <audio class="select" src="./sfx/select.mp3"></audio>
+    <audio class="music" src="./music/summon-the-megalodon.mp3"></audio>
+  </body>
+</html>

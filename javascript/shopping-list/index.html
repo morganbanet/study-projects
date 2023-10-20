@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Font Awesome 6.1.2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- My scripts and stylesheets -->
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Shopping List</title>
+  </head>
+  <body>
+    <div id="app-border #hidden"></div>
+    <div id="top-cover"></div>
+
+    <!-- Modal windows -->
+    <div id="modal-screen" class="hidden">
+      <div id="error-window" class="hidden">
+        <h2>Error</h2>
+        <p id="error-message">Please enter a valid item</p>
+        <button type="button" id="confirm" class="modal-button button">
+          OK!
+        </button>
+      </div>
+
+      <div id="exists-window" class="hidden">
+        <h2>Error</h2>
+        <p id="exists-message">Item already exists</p>
+        <button type="button" id="confirm" class="modal-button button">
+          OK!
+        </button>
+      </div>
+    </div>
+
+    <!-- Control panel -->
+    <div id="app-container">
+      <main id="panel">
+        <header>
+          <img src="images/note.png" id="note" />
+          <h1>Shopping List</h1>
+        </header>
+        <div id="panel-contents">
+          <input type="text" placeholder="Enter item" id="item-input" />
+          <input type="text" placeholder="Filter" id="item-filter" />
+
+          <div id="panel-controls">
+            <button
+              type="button"
+              id="add-item"
+              class="panel-button button add-item"
+            >
+              Add Item
+            </button>
+            <button
+              type="button"
+              id="clear-all"
+              class="panel-button button clear-all"
+            >
+              Clear All
+            </button>
+          </div>
+
+          <!-- Work in progress -->
+          <!-- <button type="button" id="archive" class="panel-button button">
+            <i class="fa-sharp fa-solid fa-inbox"></i>
+            Archive List
+          </button> -->
+        </div>
+
+        <!-- Panel images -->
+        <div id="images">
+          <img id="fruit-img" src="images/fruit.png" />
+          <img id="juice-img" src="images/juice.png" />
+          <img id="grapes-img" src="images/grapes.png" />
+          <img id="splash-img" src="images/splash.png" />
+        </div>
+      </main>
+
+      <!-- Item list -->
+      <section id="list-section">
+        <div id="display-empty">
+          <h3>There is nothing to display</h3>
+          <p>Try adding some items!</p>
+        </div>
+        <ul id="item-list">
+          <!-- <li id="item">
+            <p id="item-text">Apples</p>
+            <div id="button-container">
+              <button id="check" class="item-button button check-item">
+                <i id="list-icon" class="fa-solid fa-check"></i>
+              </button>
+              <button id="delete" class="item-button button remove-item">
+                <i id="list-icon" class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </li>
+
+          <li id="item">
+            <p id="item-text">Oranges</p>
+            <div id="button-container">
+              <button id="check" class="item-button button check-item">
+                <i id="list-icon" class="fa-solid fa-check"></i>
+              </button>
+              <button id="delete" class="item-button button remove-item">
+                <i id="list-icon" class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </li>
+
+          <li id="item">
+            <p id="item-text">Juice</p>
+            <div id="button-container">
+              <button id="check" class="item-button button check-item">
+                <i id="list-icon" class="fa-solid fa-check"></i>
+              </button>
+              <button id="delete" class="item-button button remove-item">
+                <i id="list-icon" class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </li> -->
+        </ul>
+        <div id="empty"></div>
+      </section>
+    </div>
+    <div id="bottom-cover"></div>
+  </body>
+</html>

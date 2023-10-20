@@ -1,0 +1,149 @@
+:root {
+  --font-family: 'Satoshi', sans-serif;
+  --color-primary: #f1a335;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+}
+
+/* Navbar */
+.navbar {
+  width: 40rem;
+  height: 4.4375rem;
+  padding: 1.25rem;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.navbar h1 {
+  margin: 0;
+  color: var(--color-primary);
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.links a {
+  margin-left: 1rem;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #333;
+}
+
+.links a:hover {
+  color: var(--color-primary);
+}
+
+.content {
+  width: 40rem;
+  padding: 1.25rem;
+  margin: 2.5rem auto;
+}
+
+/* Home page */
+.home h2 {
+  margin-top: 0;
+}
+
+/* Blog previews */
+.blog-preview {
+  padding: 0.625rem 1rem;
+  margin: 1.25rem 0;
+  border-bottom: 1px solid #fafafa;
+}
+
+.blog-preview:hover {
+  box-shadow: 1px 3px 5px #0000001a;
+  transform: scale(1.015);
+}
+
+.blog-preview h2 {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.blog-preview a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Blog details */
+.blog-details h2 {
+  font-size: 20px;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.blog-details div {
+  margin: 20px 0;
+  white-space: pre-wrap;
+}
+
+.blog-details button {
+  background: var(--color-primary);
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.blog-details button:hover {
+  box-shadow: 1px 3px 5px #0000001a;
+}
+
+/* Create blog */
+.create {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.create label {
+  text-align: left;
+  display: block;
+}
+
+.create h2 {
+  font-size: 20px;
+  color: var(--color-primary);
+  margin-bottom: 30px;
+}
+
+.create input,
+.create textarea,
+.create select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  display: block;
+  font-family: var(--font-family);
+}
+
+.create button {
+  background: var(--color-primary);
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.create button:hover {
+  box-shadow: 1px 3px 5px #0000001a;
+}

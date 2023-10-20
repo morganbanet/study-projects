@@ -1,0 +1,56 @@
+html {
+    background-image: 
+      url("https://w.wallhaven.cc/full/rr/wallhaven-rrqw6w.png");
+    background-size: cover;
+    background-repeat: no-reapeat;
+  }
+  
+  body {
+    padding: 20px;
+    font-family: sans-serif;
+    color: rgb(242, 242, 242)
+  }
+  
+  #form-box {
+    width: 500px;
+    min-width: 300px;
+    margin: 10px auto;
+    background-color: rgba(64, 154, 165, 0.9);
+    border-radius: 4px;
+    padding: 20px;
+  }
+  
+  #title, #description {
+    text-align: center;
+  }
+  
+  label, input, select {
+    display: block;
+    margin: 2px 0;
+    padding: 5px 0;
+    width: 100%;
+  }
+  
+  textarea {
+    display: block;
+    margin: 2px 0;
+    padding: 5px;
+    width: 98%;
+  }
+  
+  select, input, textarea {
+    background-color: rgb(255, 255, 255);
+    border: none;
+  }
+  
+  input[type="radio"], input[type="checkbox"] {
+    width: unset;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  input[type="submit"] {
+    margin: 10px auto;
+    width: 100%;
+    border-radius: 4px;
+  }

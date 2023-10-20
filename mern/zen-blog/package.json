@@ -1,0 +1,34 @@
+{
+  "name": "zen-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "NODE_ENV=production & node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "data:import": "node backend/seeder",
+    "data:flush": "node backend/seeder -f"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.1",
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "express": "^4.18.2",
+    "express-html-sanitizer": "^1.0.1",
+    "express-rate-limit": "^7.1.1",
+    "helmet": "^7.0.0",
+    "hpp": "^0.2.3",
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.6.2",
+    "morgan": "^1.10.0",
+    "slugify": "^1.6.6"
+  }
+}

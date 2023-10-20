@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Number Guesser!</title>
+  </head>
+  <body>
+    <header>
+      <button class="btn reset">Reset!</button>
+      <p>(Between 1 and 20)</p>
+      <button class="btn about">About</button>
+    </header>
+
+    <div class="container">
+      <div class="middle">
+        <div class="title">
+          <h1>Guess A Number</h1>
+        </div>
+
+        <div class="number">
+          <p>?</p>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="left">
+        <input type="number" class="guess" />
+        <button class="btn check">Guess!</button>
+      </section>
+
+      <section class="right">
+        <p class="message">Make a guess...</p>
+        <p class="label-score">Score: <span class="score">20</span></p>
+        <p class="label-highscore">
+          Highscore: <span class="highscore">0</span>
+        </p>
+      </section>
+
+      <div class="overlay hidden">
+        <div class="modal hidden">
+          <div><button class="btn exit">x</button></div>
+          <h2>About This Project</h2>
+          <p>
+            Hello and welcome to my number guessing game. This web app is my
+            first JavaScript application which I have successfully completed
+          </p>
+
+          <p>
+            I have been self-studying almost three months so far learning HTML,
+            CSS, and JavaScript so far after coming from two months of Python
+            and Django, so I really still only know very basic stuff
+          </p>
+
+          <p>
+            This app was a project from Jonas Schmedtmanns Complete JavaScript
+            course on Udemy. I made the initial project along with him first,
+            and then proceeded to make this one and all its styling by myself,
+            with some referencing of the original code
+          </p>
+          <a
+            href="https://www.udemy.com/course/the-complete-javascript-course/learn/"
+            >Check out Jonas's JavaScript course on Udemy here</a
+          >
+        </div>
+      </div>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

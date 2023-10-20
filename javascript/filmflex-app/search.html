@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/icon.ico" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/libraries/fontawesome.css" />
+    <link rel="stylesheet" href="/libraries/swiper-bundle.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/spinner.css" />
+
+    <!-- Scripts -->
+    <script src="libraries/swiper-bundle.js" defer></script>
+    <script src="jscript/script.js" defer></script>
+
+    <title>FilmFlex</title>
+  </head>
+
+  <body>
+    <!-- Primary Header -->
+    <header class="primary-header main-header">
+      <div class="header-container">
+        <a href="index.html" class="logo">FILMFLEX</a>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <form
+            class="search-form"
+            action="/search.html"
+            method="get"
+            class="search-form"
+          >
+            <select class="dropdown" name="type" id="type-select">
+              <option value="multi" selected>All</option>
+              <option value="movie">Movies</option>
+              <option value="tv">TV Series</option>
+            </select>
+
+            <input
+              class="search-field"
+              type="text"
+              name="search-term"
+              id="search-term"
+              placeholder="Search FilmFlex"
+            />
+            <button class="search-btn" type="submit" value="submit">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Nav Links -->
+        <ul class="nav-links">
+          <li>
+            <a class="nav-link movie" href="/search.html?type=movie">Movies</a>
+          </li>
+          <li><a class="nav-link tv" href="/search.html?type=tv">Series</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Secondary Header -->
+    <header class="secondary-header main-header">
+      <div class="header-container secondary">
+        <!-- Search Bar -->
+        <div class="search-container">
+          <form
+            class="search-form"
+            action="/search.html"
+            method="get"
+            class="search-form"
+          >
+            <select
+              class="dropdown dropdown-secondary"
+              name="type"
+              id="type-select"
+            >
+              <option value="multi" selected>All</option>
+              <option value="movie">Movies</option>
+              <option value="tv">TV Series</option>
+            </select>
+
+            <input
+              class="search-field search-field-secondary"
+              type="text"
+              name="search-term"
+              id="search-term"
+              placeholder="Search FilmFlex"
+            />
+            <button class="search-btn" type="submit" value="submit">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <!-- Grid -->
+    <main id="main">
+      <section class="grid-container">
+        <div class="heading-nav search-navs">
+          <h2 class="heading type"></h2>
+          <h2 class="heading searching-for"></h2>
+          <h2 class="heading total-results"></h2>
+        </div>
+        <div class="grid grid-search"></div>
+      </section>
+    </main>
+
+    <!-- Primary Footer -->
+    <footer class="primary-footer main-footer">
+      <div class="footer-container">
+        <a href="index.html" class="logo">FILMFLEX</a>
+
+        <div class="attribution-footer attribution-primary">
+          <img src="/media/tmdb-logo.svg" class="tmbd-footer-logo" />
+          <p class="attribution-footer-text">
+            This site utilizes the
+            <a href="https://developer.themoviedb.org/docs">TMBD API</a> for
+            data integration. Note that this site is an independent initiative
+            and not officially endorsed by TMBD.
+          </p>
+        </div>
+
+        <ul class="nav-links social-links">
+          <li>
+            <a href="https://www.facebook.com" target="_blank"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.twitter.com" target="_blank"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com" target="_blank"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Secondary Footer -->
+    <footer class="secondary-footer">
+      <div class="footer-container secondary-container">
+        <div class="attribution-footer attribution-secondary">
+          <img src="/media/tmdb-logo.svg" class="tmbd-footer-logo" />
+          <p class="attribution-footer-text">
+            This site utilizes the
+            <a href="https://developer.themoviedb.org/docs">TMBD API</a> for
+            data integration. Note that this site is an independent initiative
+            and not officially endorsed by TMBD.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

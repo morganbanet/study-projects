@@ -1,0 +1,523 @@
+:root {
+  --color-background: #242424;
+  --color-scrollbar: #3e3a3a;
+  --color-header: #886b3f;
+  --color-box: #af8f5e;
+  --color-hp: #6d2525;
+  --font-primary: 'Press Start 2P', cursive, sans-serif;
+  --font-secondary: 'Pirata One', cursive, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--color-background);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0 auto;
+  color: white;
+  font-family: var(--font-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: none;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar);
+  border-radius: 4px;
+  border: 0px solid var(--color-hp);
+}
+
+main {
+  height: 100%;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  height: 130px;
+  padding: 0 10px;
+  margin: 0 auto;
+  margin-bottom: 85px;
+  background-color: var(--color-header);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ------------------------------------------------------- Game state */
+.log-top {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.log-bottom {
+  margin: 0;
+  margin-bottom: 65px;
+  font-size: 14px;
+}
+
+.state-wrapper {
+  width: 100%;
+  height: 206px;
+  max-width: 480px;
+  margin-bottom: 38px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.outer-card-wrapper {
+  display: flex;
+}
+
+.inner-card-wrapper {
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.hp {
+  width: 15px;
+  height: 150px;
+  border: 2px solid var(--color-box);
+  display: flex;
+  align-items: flex-end;
+}
+
+.hp .amount {
+  width: 100%;
+  height: 0%;
+  background-color: var(--color-hp);
+  transition: all 1300ms ease-in-out;
+}
+
+.hp.player {
+  margin-right: 10px;
+}
+
+.hp.enemy {
+  margin-left: 10px;
+}
+
+.chosen-box {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 14px;
+  border: 2px solid var(--color-box);
+}
+
+.chosen-box img {
+  width: 100%;
+}
+
+.user {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.win {
+  margin: 0;
+}
+
+.reset-desktop {
+  padding: 43px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reset-desktop .fa-rotate {
+  color: var(--color-box);
+  font-size: 37.5px;
+  transition: all 150ms ease-in-out;
+}
+
+.reset-desktop .fa-rotate:hover {
+  transition: all 150ms ease-in-out;
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+.reset-desktop p {
+  margin: 14px 0 14px 0;
+  font-size: 14px;
+}
+/* --------------------------------------------------------- Controls */
+.controls-wrapper {
+  width: 100%;
+  max-width: 680px;
+  margin-bottom: 34px;
+  display: flex;
+  justify-content: space-between;
+  transition: all 500ms ease-in-out;
+}
+
+.choice-box {
+  width: 100%;
+  height: 100%;
+  max-width: 200px;
+  max-height: 200px;
+  margin-right: 7px;
+  border: 2px solid var(--color-box);
+  transition: all 150ms ease-in-out;
+}
+
+.choice-box:last-of-type {
+  margin-right: 0;
+}
+
+.choice-box:hover {
+  transition: all 150ms ease-in-out;
+  transform: scale(1) translateY(-18px);
+  cursor: pointer;
+}
+
+.choice-box img {
+  width: 100%;
+  pointer-events: none;
+}
+
+.hint {
+  margin-bottom: 34px;
+  font-family: var(--font-secondary);
+}
+
+/* ----------------------------------------------------- Game options */
+.options-wrapper {
+  width: 310px;
+  margin-bottom: 188px;
+  display: flex;
+  justify-content: center;
+}
+
+.audio {
+  width: 194px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-volume-high,
+.fa-volume-low,
+.fa-volume-xmark {
+  font-size: 24px;
+  color: var(--color-box);
+  cursor: pointer;
+}
+
+.volume {
+  width: 150px;
+  height: 15px;
+  border: 2px solid var(--color-box);
+  position: relative;
+  cursor: pointer;
+}
+
+.volume .percent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  pointer-events: none;
+}
+
+.volume p {
+  margin: 0;
+  font-size: 10px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.volume .amount {
+  width: 72%;
+  height: 100%;
+  background-color: var(--color-hp);
+  pointer-events: none;
+}
+
+.reset-mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reset-mobile .fa-rotate {
+  color: var(--color-box);
+  font-size: 20px;
+  transition: all 150ms ease-in-out;
+}
+
+.reset-mobile .fa-rotate:hover {
+  transition: all 150ms ease-in-out;
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+.reset-mobile p {
+  margin-left: 6px;
+  font-size: 10px;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.footer-wrapper {
+  width: 100%;
+  padding: 0 10px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-wrapper p {
+  font-size: 14px;
+  font-family: var(--font-secondary);
+  overflow: visible;
+}
+
+.author {
+  color: var(--color-box);
+}
+
+a {
+  text-decoration-color: var(--color-box);
+}
+
+a:hover {
+  transition: all 150ms ease-in-out;
+  transform: translateY(-1px);
+  display: inline-block;
+}
+
+.backdrop {
+  width: 100%;
+  max-width: 900px;
+  padding-right: 76px;
+  opacity: 0.05;
+  position: fixed;
+  bottom: 0;
+  z-index: -1;
+  left: 0;
+}
+/* ---------------------------------------------------------- Misc JS */
+.game-win {
+  box-shadow: 0 0 8px 3px var(--color-hp);
+  transition: all 100ms ease-in-out;
+}
+
+.disabled {
+  opacity: 0.5;
+  transition: all 150ms ease-in-out;
+  pointer-events: none;
+}
+
+#muted {
+  background-color: rgb(90, 48, 48);
+  transition: all 150ms ease-in-out;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ---------------------------------------------------- Media Queries */
+
+@media (max-width: 745px) {
+  h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 701px) {
+  .options-wrapper {
+    margin-bottom: 46.33px;
+  }
+}
+
+@media (min-width: 550px) {
+  .reset-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  header {
+    height: 100px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .log-top {
+    font-size: 12px;
+  }
+
+  .log-bottom {
+    font-size: 10px;
+  }
+
+  .reset-desktop {
+    display: none;
+  }
+
+  .inner-card-wrapper.player {
+    margin-right: 25px;
+  }
+
+  .state-wrapper {
+    width: 395px;
+  }
+
+  .user.player,
+  .user.enemy {
+    margin-bottom: 6px;
+    font-size: 10px;
+  }
+
+  .win.player,
+  .win.enemy {
+    font-size: 10px;
+  }
+
+  .hint {
+    font-size: 14px;
+  }
+
+  .options-wrapper {
+    justify-content: space-between;
+  }
+
+  .footer-wrapper p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 414px) {
+  header {
+    margin-bottom: 45px;
+  }
+
+  h1 {
+    font-size: 16px;
+  }
+
+  .log-top {
+    margin-top: 0;
+    font-size: 8px;
+  }
+
+  .log-bottom {
+    margin-bottom: 45px;
+    font-size: 8px;
+  }
+
+  .state-wrapper {
+    width: 232px;
+    height: 117px;
+    margin-bottom: 47px;
+  }
+
+  .hp {
+    width: 10px;
+    height: 85px;
+  }
+
+  .hp.player {
+    margin-right: 4px;
+  }
+
+  .hp.enemy {
+    margin-left: 4px;
+  }
+
+  .inner-card-wrapper {
+    width: 85px;
+  }
+
+  .chosen-box {
+    width: 85px;
+    height: 85px;
+    margin-bottom: 10px;
+  }
+
+  .user.player,
+  .user.enemy {
+    margin-bottom: 6px;
+    font-size: 8px;
+  }
+
+  .win.player,
+  .win.enemy {
+    font-size: 8px;
+  }
+
+  .controls-wrapper {
+    margin-bottom: 13px;
+  }
+
+  .hint {
+    margin-bottom: 32px;
+    font-size: 12px;
+  }
+
+  .options-wrapper {
+    width: 277px;
+  }
+
+  .reset-mobile p {
+    font-size: 7px;
+  }
+
+  .audio {
+    width: 181px;
+  }
+
+  .fa-volume-high,
+  .fa-volume-low,
+  .fa-volume-xmark {
+    font-size: 20px;
+  }
+
+  .volume {
+    height: 10px;
+  }
+
+  .volume .percent p {
+    font-size: 5px;
+  }
+}
+
+@media (max-width: 380px) {
+  header {
+    height: 56px;
+  }
+
+  h1 {
+    font-size: 13px;
+  }
+}

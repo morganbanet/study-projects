@@ -1,0 +1,80 @@
+body {
+    padding: 20px;
+}
+
+.canvas {
+    width: 500px;
+    height: 600px;
+    background-color: rgb(91, 68, 68);
+    overflow: hidden; 
+    filter: blur(2px);
+}
+
+.frame {
+    border: 50px solid black;
+    margin: 20px auto;
+    width: 500px;
+    padding: 50px;
+}
+
+.one {
+    width: 425px;
+    height: 100px;
+    margin: 20px auto;
+    border-radius: 9px;
+    background-color: rgb(139, 213, 213);
+    box-shadow: 0 0 3px 3px rgb(139, 213, 213);
+    transform: rotate(-0.6deg);
+}
+
+.two {
+    width: 475px;
+    height: 200px;
+    margin: 0 auto 10px;
+    border-radius: 8px 10px;
+    background-color: rgb(247, 238, 137);
+    box-shadow: 0 0 5px 5px rgb(247, 238, 137);
+    transform: rotate(0.4deg);
+}
+
+.three {
+    width: 150px;
+    height: 81px;
+    display: inline-block;
+    margin-left: 50px;
+    margin-top: 20px;
+    border-radius: 9px;
+    background-color: rgb(104, 205, 171);
+    box-shadow: 0 0 3px 3px rgb(104, 205, 171);
+    transform: rotate(0.9deg);
+}
+
+.four {
+    width: 200px;
+    height: 89px;
+    display: inline-block;
+    margin-left: 40px;
+    margin-top: 10px;
+    border-radius: 9px;
+    background-color: rgb(104, 205, 171);
+    box-shadow: 0 0 3px 3px rgb(104, 205, 171);
+    transform: rotate(-0.8deg);
+}
+
+.five {
+    width: 475px;
+    height: 102px;
+    margin: 20px auto;
+    border-radius: 30px 25px 60px 12px;
+    background-color: rgb(193, 93, 93);
+    box-shadow: 0 0 5px 5px rgb(193, 93, 93);
+    transform: rotate(-0.6deg);
+}
+
+.one, .three, .four {
+    filter: blur(1px);
+}
+
+.two, .five {
+    filter: blur(2px);
+}

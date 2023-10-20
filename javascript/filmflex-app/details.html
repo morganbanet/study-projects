@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/icon.ico" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/libraries/fontawesome.css" />
+    <link rel="stylesheet" href="/libraries/swiper-bundle.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/spinner.css" />
+
+    <!-- Scripts -->
+    <script src="libraries/swiper-bundle.js" defer></script>
+    <script src="jscript/script.js" defer></script>
+
+    <title>FilmFlex</title>
+  </head>
+
+  <body>
+    <!-- Primary Header -->
+    <header class="primary-header main-header">
+      <div class="header-container">
+        <a href="index.html" class="logo">FILMFLEX</a>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+          <form
+            class="search-form"
+            action="/search.html"
+            method="get"
+            class="search-form"
+          >
+            <select class="dropdown" name="type" id="type-select">
+              <option value="multi" selected>All</option>
+              <option value="movie">Movies</option>
+              <option value="tv">TV Series</option>
+            </select>
+
+            <input
+              class="search-field"
+              type="text"
+              name="search-term"
+              id="search-term"
+              placeholder="Search FilmFlex"
+            />
+            <button class="search-btn" type="submit" value="submit">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </button>
+          </form>
+        </div>
+
+        <!-- Nav Links -->
+        <ul class="nav-links">
+          <li>
+            <a class="nav-link movie" href="/search.html?type=movie">Movies</a>
+          </li>
+          <li><a class="nav-link tv" href="/search.html?type=tv">Series</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Secondary Header -->
+    <header class="secondary-header main-header">
+      <div class="header-container secondary">
+        <!-- Search Bar -->
+        <div class="search-container">
+          <form
+            class="search-form"
+            action="/search.html"
+            method="get"
+            class="search-form"
+          >
+            <select
+              class="dropdown dropdown-secondary"
+              name="type"
+              id="type-select"
+            >
+              <option value="multi" selected>All</option>
+              <option value="movie">Movies</option>
+              <option value="tv">TV Series</option>
+            </select>
+
+            <input
+              class="search-field search-field-secondary"
+              type="text"
+              name="search-term"
+              id="search-term"
+              placeholder="Search FilmFlex"
+            />
+            <button class="search-btn" type="submit" value="submit">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <!-- Backdrop Image -->
+    <main class="content-wrap">
+      <img class="backdrop hidden" src="" alt="" />
+
+      <div class="mobile-poster-container">
+        <img class="mobile-poster hidden" src="" alt="" />
+        <div class="mobile-gradient hidden"></div>
+      </div>
+
+      <section class="details">
+        <!-- Poster and title/description -->
+        <div class="details-left">
+          <div class="poster-xl-container">
+            <img src="" class="poster-xl" />
+          </div>
+
+          <div class="desc-panel">
+            <div class="description">
+              <div class="desc-title">
+                <h2 class="desc-title-inner"></h2>
+              </div>
+              <div class="desc-info">
+                <p class="desc-info-inner"></p>
+              </div>
+              <div class="desc-body">
+                <p class="desc-body-inner"></p>
+              </div>
+
+              <!-- Type, Country, Budget, etc -->
+              <div class="stats-panel">
+                <div class="stats-part-one">
+                  <ul>
+                    <li>
+                      <span class="stat">Type: </span
+                      ><span class="stat-type"></span>
+                    </li>
+                    <li>
+                      <span class="stat">Country: </span
+                      ><span class="stat-country"></span>
+                    </li>
+                    <li>
+                      <span class="stat">Status: </span
+                      ><span class="stat-status"></span>
+                    </li>
+                    <li>
+                      <span class="stat">Language: </span
+                      ><span class="stat-language"></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="stats-part-two">
+                  <ul>
+                    <li>
+                      <span class="stat stat-movie">Budget: </span
+                      ><span class="stat-budget"></span>
+                    </li>
+                    <li>
+                      <span class="stat stat-movie">Revenue: </span
+                      ><span class="stat-revenue"></span>
+                    </li>
+                    <li>
+                      <span class="stat">Producers: </span
+                      ><span class="stat-producers"></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-btns">
+              <button class="homepage-btn">Visit Movie Homepage</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cast Right & Swiper -->
+        <div class="details-right hidden">
+          <h2 class="cast-heading">Cast</h2>
+          <div class="swiper swiper-cast">
+            <div class="swiper-wrapper swiper-right-cast-wrapper"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="content-wrap-bottom">
+      <!-- Cast Bottom & Swiper -->
+      <div class="bottom-cast-container hidden">
+        <h2>Cast</h2>
+        <div class="swiper swiper-bottom-cast">
+          <div class="swiper-wrapper swiper-bottom-cast-wrapper"></div>
+        </div>
+      </div>
+
+      <div class="bottom-all-container">
+        <div class="bottom-left-container">
+          <!-- Seasons & Swiper -->
+          <div class="season-card-container hidden">
+            <div class="season-list-container">
+              <h2>Episodes</h2>
+              <div class="swiper swiper-seasons">
+                <div class="swiper-wrapper swiper-season-wrapper"></div>
+              </div>
+            </div>
+
+            <!-- Episodes & Swiper -->
+            <div class="episode-list-container">
+              <div class="swiper swiper-episodes">
+                <div class="swiper-wrapper swiper-episode-wrapper"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-left-bottom-container">
+            <!-- User Reviews -->
+            <div class="reviews-container">
+              <h2>Reviews</h2>
+
+              <div class="no-reviews hidden">
+                <p>There are no reviews :&#40;</p>
+              </div>
+            </div>
+
+            <!-- Similar Content Bottom  -->
+            <div class="similar-outer-container hidden">
+              <div class="similar-container secondary-similar">
+                <h2 class="similar-bottom-heading"></h2>
+
+                <!-- First Similar Card JS -->
+                <div class="first-similar first-similar-bottom"></div>
+
+                <!-- Other Similar Cards -->
+                <div
+                  class="similar-cards-container cards-container-bottom"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Similar Content Right  -->
+        <div class="bottom-right-container hidden">
+          <div class="similar-container similar-right">
+            <h2 class="similar-right-heading"></h2>
+
+            <!-- First Similar Card JS -->
+            <div class="first-similar first-similar-right"></div>
+
+            <!-- Other Similar Cards -->
+            <div class="similar-cards-container cards-container-right"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Review Modal -->
+    <div class="modal-screen hidden">
+      <div class="review-modal">
+        <div class="review-card-modal">
+          <div class="review-container-top">
+            <img
+              src="/media/no-image.png"
+              alt=""
+              class="profile-picture modal-picture"
+            />
+            <div class="review-profile">
+              <p class="username username-modal"></p>
+              <p class="review-date date-modal"></p>
+            </div>
+          </div>
+
+          <div class="review-container-bottom modal-container-bottom">
+            <p class="review-body-modal"></p>
+            <button class="close-modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Primary Footer -->
+    <footer class="primary-footer main-footer">
+      <div class="footer-container">
+        <a href="index.html" class="logo">FILMFLEX</a>
+
+        <div class="attribution-footer attribution-primary">
+          <img src="/media/tmdb-logo.svg" class="tmbd-footer-logo" />
+          <p class="attribution-footer-text">
+            This site utilizes the
+            <a href="https://developer.themoviedb.org/docs">TMBD API</a> for
+            data integration. Note that this site is an independent initiative
+            and not officially endorsed by TMBD.
+          </p>
+        </div>
+
+        <ul class="nav-links social-links">
+          <li>
+            <a href="https://www.facebook.com" target="_blank"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.twitter.com" target="_blank"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com" target="_blank"
+              ><i class="fa-brands fa-instagram"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Secondary Footer -->
+    <footer class="secondary-footer">
+      <div class="footer-container secondary-container">
+        <div class="attribution-footer attribution-secondary">
+          <img src="/media/tmdb-logo.svg" class="tmbd-footer-logo" />
+          <p class="attribution-footer-text">
+            This site utilizes the
+            <a href="https://developer.themoviedb.org/docs">TMBD API</a> for
+            data integration. Note that this site is an independent initiative
+            and not officially endorsed by TMBD.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
