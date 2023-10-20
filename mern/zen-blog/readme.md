@@ -33,7 +33,7 @@ The application contains the following features:
 
 ### Screenshots
 
-![screenshot](./frontend/public/screenshot.jpg)
+![screenshot](./frontend/public/screenshot.png)
 
 ### Links
 
