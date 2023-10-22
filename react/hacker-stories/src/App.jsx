@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useReducer } from 'react';
 
 // Custom hook
 const useStorageState = (key, initialState) => {
@@ -11,66 +11,81 @@ const useStorageState = (key, initialState) => {
   return [value, setValue];
 };
 
+// Reducer function
+const storiesReducer = (state, action) => {
+  switch (action.type) {
+    case 'STORIES_FETCH_INIT':
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case 'STORIES_FETCH_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        data: action.payload,
+      };
+    case 'STORIES_FETCH_FAILURE':
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    case 'REMOVE_STORY':
+      return {
+        ...state,
+        data: state.data.filter(
+          (story) => story.objectId !== action.payload.objectId
+        ),
+      };
+    default:
+      throw new Error();
+  }
+};
+
+const API_ENDPOINT = 'http://hn.algolia.com/api/v1/search?query=';
+
 const App = () => {
-  const initialState = [
-    {
-      title: 'React',
-      url: 'https://reactjs.org/',
-      author: 'Jordan Walke',
-      num_comments: 3,
-      points: 4,
-      objectId: 0,
-    },
-    {
-      title: 'Redux',
-      url: 'https://redux.js.org/',
-      author: 'Dan Abramov, Andrew Clark',
-      num_comments: 3,
-      points: 5,
-      objectId: 1,
-    },
-    {
-      title: 'Firebase',
-      url: 'https://firebase.google.com/',
-      author: 'Robin Weiruch',
-      num_comments: 4,
-      points: 6,
-      objectId: 2,
-    },
-  ];
-
   const [searchTerm, setSearchTerm] = useStorageState('search', '');
-  const [stories, setStories] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
 
-  const getAsyncStories = () =>
-    new Promise((resolve) =>
-      setTimeout(() => resolve({ data: { stories: initialState } }), 2000)
-    );
+  const [stories, dispatchStories] = useReducer(storiesReducer, {
+    data: [],
+    isLoading: false,
+    isError: false,
+  });
 
   useEffect(() => {
-    getAsyncStories()
+    dispatchStories({ type: 'STORIES_FETCH_INIT' });
+
+    fetch(`${API_ENDPOINT}react`)
+      .then((response) => response.json())
       .then((result) => {
-        setStories(result.data.stories);
-        setIsLoading(false);
+        console.log(result);
+
+        dispatchStories({
+          type: 'STORIES_FETCH_SUCCESS',
+          payload: result.hits,
+        });
       })
-      .catch(() => setIsError(true));
+      .catch(() => dispatchStories({ type: 'STORIES_FETCH_FAILURE' }));
   }, []);
 
   const handleRemoveStory = (item) => {
-    const newStories = stories.filter(
-      (story) => story.objectId !== item.objectId
-    );
+    console.log(item);
 
-    setStories(newStories);
+    dispatchStories({
+      type: 'REMOVE_STORY',
+      payload: item,
+    });
   };
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const searchedStories = stories.filter((story) =>
+  const searchedStories = stories.data.filter((story) =>
     story.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -90,9 +105,9 @@ const App = () => {
 
       <hr />
 
-      {isError && <p>Something went wrong...</p>}
+      {stories.isError && <p>Something went wrong...</p>}
 
-      {isLoading ? (
+      {stories.isLoading ? (
         <p>Loading...</p>
       ) : (
         <List list={searchedStories} onRemoveItem={handleRemoveStory} />
@@ -145,11 +160,11 @@ const Item = ({ item, onRemoveItem }) => {
   return (
     <li>
       <span>
-        <a href={item.url}>{item.title}</a>
+        <a href={item.url}>{item.title} </a>
       </span>
       <span>{item.author}</span>
       <span>{item.num_comments}</span>
-      <span>{item.points}</span>
+      <span>{item.points}</span> &nbsp;
       <span>
         <button type="button" onClick={() => onRemoveItem(item)}>
           Dismiss
