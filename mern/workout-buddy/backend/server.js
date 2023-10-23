@@ -1,4 +1,5 @@
-require('dotenv').config();
+require('dotenv').config({ path: './config/config.env' });
+const connectDB = require('./config/database');
 const express = require('express');
 const morgan = require('morgan');
 
@@ -6,6 +7,7 @@ const morgan = require('morgan');
 const workoutRoutes = require('./routes/workoutRoutes');
 
 // Express config
+connectDB();
 const PORT = process.env.PORT || 5000;
 const app = express();
 
@@ -21,5 +23,5 @@ app.use('/api/workouts', workoutRoutes);
 
 // Run server
 app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}...`);
+  console.log(`Server running on ${PORT}`);
 });
