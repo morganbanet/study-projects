@@ -1,3 +1,3 @@
 # Study Projects
 
-Collection of projects from studying books and courses
+Collection of study projects from books and courses.
