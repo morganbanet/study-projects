@@ -1,4 +1,6 @@
 const express = require('express');
+const advancedResults = require('../middleware/resultsMiddleware');
+const Workout = require('../models/workoutModel');
 
 const {
   getWorkouts,
@@ -12,7 +14,7 @@ const router = express.Router();
 
 // prettier-ignore
 router.route('/')
-  .get(getWorkouts)
+  .get(advancedResults(Workout), getWorkouts)
   .post(createWorkout);
 
 // prettier-ignore

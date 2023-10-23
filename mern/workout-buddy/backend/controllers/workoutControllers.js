@@ -5,14 +5,7 @@ const Workout = require('../models/workoutModel');
 // @route       GET /api/workouts
 // @access      Private
 exports.getWorkouts = asyncHandler(async (req, res) => {
-  const workouts = await Workout.find();
-
-  if (!workouts) {
-    res.status(404);
-    throw new Error('Resource not found');
-  }
-
-  return res.status(200).json({ success: true, data: workouts });
+  res.status(200).json(res.advancedResults);
 });
 
 // @desc        Get workout
@@ -53,6 +46,9 @@ exports.updateWorkout = asyncHandler(async (req, res) => {
     runValidators: true,
     new: true,
   });
+
+  // Trigger pre-save middleware (ie, slugify)
+  await workout.save();
 
   return res.status(200).json({ success: true, data: workout });
 });
