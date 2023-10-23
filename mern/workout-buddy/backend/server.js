@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 
 // Express config
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Routes
@@ -9,6 +11,6 @@ app.get('/', (req, res) => {
 });
 
 // Run server
-app.listen(4000, () => {
-  console.log(`Listening on port 4000`);
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}...`);
 });
