@@ -5,20 +5,25 @@ const express = require('express');
 const morgan = require('morgan');
 
 const workoutRoutes = require('./routes/workoutRoutes');
+const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 // Express config
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Morgan config
-app.use(morgan('dev'));
-
 // Body parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Morgan config
+app.use(morgan('dev'));
+
 // Route mounts
 app.use('/api/workouts', workoutRoutes);
+
+// Error handlers
+app.use(notFound);
+app.use(errorHandler);
 
 // Connect database
 mongoose

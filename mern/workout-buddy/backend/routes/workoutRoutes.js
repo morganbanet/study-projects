@@ -10,8 +10,15 @@ const {
 
 const router = express.Router();
 
-router.route('/').get(getWorkouts).post(createWorkout);
+// prettier-ignore
+router.route('/')
+  .get(getWorkouts)
+  .post(createWorkout);
 
-router.route('/:id').get(getWorkout).patch(updateWorkout).delete(deleteWorkout);
+// prettier-ignore
+router.route('/:id')
+  .get(getWorkout)
+  .patch(updateWorkout)
+  .delete(deleteWorkout);
 
 module.exports = router;
