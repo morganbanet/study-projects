@@ -1,22 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 
 import WorkoutDetails from '../components/WorkoutDetails';
+import WorkoutForm from '../components/WorkoutForm';
 
 function HomeScreen() {
-  const [workouts, setWorkouts] = useState(null);
+  const { workouts, isLoading, error, dispatch } = useWorkoutsContext();
 
   useEffect(() => {
     const fetchWorkouts = async () => {
+      dispatch({ type: 'SET_LOADING' });
+
       const response = await fetch('/api/workouts');
-      const { data } = await response.json();
+      const data = await response.json();
 
       // Bad server response
       if (!response.ok) {
-        const message = `Resource not found`;
-        throw new Error(message);
+        dispatch({ type: 'SET_ERROR', payload: data.message });
+        throw new Error(data.message);
       }
 
-      setWorkouts(data);
+      dispatch({ type: 'SET_WORKOUTS', payload: data.data });
     };
 
     fetchWorkouts();
@@ -30,6 +35,8 @@ function HomeScreen() {
             <WorkoutDetails key={workout._id} workout={workout} />
           ))}
       </div>
+
+      <WorkoutForm />
     </div>
   );
 }
