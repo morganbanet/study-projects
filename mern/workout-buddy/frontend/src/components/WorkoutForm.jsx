@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { createWorkout } from '../context/workouts/workoutsActions';
 
 function WorkoutForm() {
   const { dispatch, isLoading, error } = useWorkoutsContext();
@@ -12,34 +14,17 @@ function WorkoutForm() {
     e.preventDefault();
 
     dispatch({ type: 'SET_LOADING' });
+    const data = await createWorkout({ title, load, reps });
 
-    const workout = { title, load, reps };
-
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(workout),
-    };
-
-    const response = await fetch('/api/workouts', options);
-    const data = await response.json();
-
-    // Bad server response
-    if (!response.ok) {
-      dispatch({ type: 'SET_ERROR', payload: data.message });
-      throw new Error(data.message);
+    if (data.error) {
+      return dispatch({ type: 'SET_ERROR', payload: data.error });
     }
 
-    // Update global workouts state
-    dispatch({ type: 'CREATE_WORKOUT', payload: data.data });
+    dispatch({ type: 'CREATE_WORKOUT', payload: data.workout });
 
-    // Reset form and wipe any errors
     setTitle('');
     setLoad('');
     setReps('');
-
-    // Logging for dev
-    console.log(data);
   };
 
   return (
@@ -68,8 +53,6 @@ function WorkoutForm() {
       />
 
       {!isLoading && <button>Add Workout</button>}
-      {isLoading && <button disabled>Adding...</button>}
-
       {error && <div className="error">{error}</div>}
     </form>
   );

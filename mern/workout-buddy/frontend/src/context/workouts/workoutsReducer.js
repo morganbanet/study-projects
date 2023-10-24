@@ -12,7 +12,7 @@ const workoutsReducer = (state, action) => {
         isLoading: false,
         error: action.payload,
       };
-    case 'SET_WORKOUTS':
+    case 'GET_WORKOUTS':
       return {
         ...state,
         isLoading: false,
@@ -24,6 +24,14 @@ const workoutsReducer = (state, action) => {
         isLoading: false,
         error: null,
         workouts: [action.payload, ...state.workouts],
+      };
+    case 'DELETE_WORKOUT':
+      return {
+        isLoading: false,
+        error: null,
+        workouts: state.workouts.filter(
+          (workout) => workout._id !== action.payload._id
+        ),
       };
     default:
       return state;

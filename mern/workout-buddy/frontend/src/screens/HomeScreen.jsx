@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { getWorkouts } from '../context/workouts/workoutsActions';
 
 import WorkoutDetails from '../components/WorkoutDetails';
 import WorkoutForm from '../components/WorkoutForm';
@@ -11,17 +12,13 @@ function HomeScreen() {
   useEffect(() => {
     const fetchWorkouts = async () => {
       dispatch({ type: 'SET_LOADING' });
+      const data = await getWorkouts();
 
-      const response = await fetch('/api/workouts');
-      const data = await response.json();
-
-      // Bad server response
-      if (!response.ok) {
-        dispatch({ type: 'SET_ERROR', payload: data.message });
-        throw new Error(data.message);
+      if (data.error) {
+        return dispatch({ type: 'SET_ERROR', payload: data.error });
       }
 
-      dispatch({ type: 'SET_WORKOUTS', payload: data.data });
+      dispatch({ type: 'GET_WORKOUTS', payload: data.workouts });
     };
 
     fetchWorkouts();
