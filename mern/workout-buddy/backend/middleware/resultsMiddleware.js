@@ -1,12 +1,14 @@
 const advancedResults = (model) => async (req, res, next) => {
   const reqQuery = { ...req.query };
 
-  // Filter removeFields items from reqQuery object
   const removeFields = ['select', 'sort'];
+
+  // Filter removeFields items from reqQuery object
   removeFields.forEach((field) => delete reqQuery[field]);
 
-  // Stringify & create operators ($gt, $lte, etc)
   let queryStr = JSON.stringify(reqQuery);
+
+  // Create operators ($gt, $lte, etc)
   queryStr = queryStr.replace(
     /\b(gt|gte|lt|lte|in)\b/g,
     (match) => `$${match}`

@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 
 function RootLayout() {
   return (
-    <div className="app">
+    <div className="RootLayout">
       <Navbar />
 
       <div className="pages">
