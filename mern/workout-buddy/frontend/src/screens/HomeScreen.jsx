@@ -22,7 +22,7 @@ function HomeScreen() {
     };
 
     fetchWorkouts();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="home">
