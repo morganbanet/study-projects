@@ -3,7 +3,7 @@ export const getWorkouts = async () => {
   const data = await response.json();
 
   if (!response.ok) {
-    return { error: data.message };
+    return { error: data };
   }
 
   return { workouts: data.data, count: data.count };
@@ -20,7 +20,7 @@ export const createWorkout = async (body) => {
   const data = await response.json();
 
   if (!response.ok) {
-    return { error: data.message };
+    return { error: data };
   }
 
   return { workout: data.data };
@@ -35,7 +35,7 @@ export const deleteWorkout = async (id) => {
   const data = await response.json();
 
   if (!response.ok) {
-    return { error: data.message };
+    return { error: data };
   }
 
   return { workout: data.data };

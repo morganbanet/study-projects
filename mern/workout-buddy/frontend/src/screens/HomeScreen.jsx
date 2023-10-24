@@ -7,7 +7,7 @@ import WorkoutDetails from '../components/WorkoutDetails';
 import WorkoutForm from '../components/WorkoutForm';
 
 function HomeScreen() {
-  const { workouts, isLoading, error, dispatch } = useWorkoutsContext();
+  const { workouts, dispatch } = useWorkoutsContext();
 
   useEffect(() => {
     const fetchWorkouts = async () => {

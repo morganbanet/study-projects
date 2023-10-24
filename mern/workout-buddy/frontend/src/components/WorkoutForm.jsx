@@ -17,6 +17,7 @@ function WorkoutForm() {
     const data = await createWorkout({ title, load, reps });
 
     if (data.error) {
+      console.log(data);
       return dispatch({ type: 'SET_ERROR', payload: data.error });
     }
 
@@ -36,6 +37,7 @@ function WorkoutForm() {
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        className={error && error.emptyFields.includes('title') ? 'error' : ''}
       />
 
       <label>Load (in kg):</label>
@@ -43,6 +45,7 @@ function WorkoutForm() {
         type="number"
         value={load}
         onChange={(e) => setLoad(e.target.value)}
+        className={error && error.emptyFields.includes('load') ? 'error' : ''}
       />
 
       <label>Workout Reps:</label>
@@ -50,10 +53,11 @@ function WorkoutForm() {
         type="number"
         value={reps}
         onChange={(e) => setReps(e.target.value)}
+        className={error && error.emptyFields.includes('reps') ? 'error' : ''}
       />
 
       {!isLoading && <button>Add Workout</button>}
-      {error && <div className="error">{error}</div>}
+      {error && <div className="error">{error.message}</div>}
     </form>
   );
 }
