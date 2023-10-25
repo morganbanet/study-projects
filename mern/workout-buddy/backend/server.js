@@ -5,6 +5,8 @@ const express = require('express');
 const morgan = require('morgan');
 
 const workoutRoutes = require('./routes/workoutRoutes');
+const userRoutes = require('./routes/userRoutes');
+
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 // Express config
@@ -20,6 +22,7 @@ app.use(morgan('dev'));
 
 // Route mounts
 app.use('/api/workouts', workoutRoutes);
+app.use('/api/users', userRoutes);
 
 // Error handlers
 app.use(notFound);

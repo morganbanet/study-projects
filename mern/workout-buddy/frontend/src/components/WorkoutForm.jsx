@@ -47,7 +47,7 @@ function WorkoutForm() {
         className={error && error.emptyFields.includes('load') ? 'error' : ''}
       />
 
-      <label>Workout Reps:</label>
+      <label>Reps:</label>
       <input
         type="number"
         value={reps}

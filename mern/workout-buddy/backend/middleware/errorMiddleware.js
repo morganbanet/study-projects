@@ -31,7 +31,7 @@ const errorHandler = (err, req, res, next) => {
     stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
   };
 
-  if (emptyFields) {
+  if (emptyFields && emptyFields.length !== 0) {
     resObj = { message, emptyFields, ...resObj };
   }
 
