@@ -1,3 +1,5 @@
+const ErrorResponse = require('../utils/ErrorResponse');
+
 const notFound = (req, res, next) => {
   const error = new Error(`Not found ${req.originalUrl}`);
   res.status(404);
@@ -5,37 +7,40 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-  // If status code 200, then change to 500
-  let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  let message = err.message;
+  let error = { ...err };
+  error.message = err.message;
+
   let emptyFields = [];
 
   // Loggging for dev
-  // console.log(JSON.parse(JSON.stringify(err)));
+  console.log(JSON.parse(JSON.stringify(err)));
+  console.log(err);
 
   // Mongoose bad object id
   if (err.name === 'CastError') {
-    message = 'Resource not found';
-    statusCode = 404;
+    const message = 'Resource not found';
+    error = new ErrorResponse(message, 404);
+  }
+
+  // Mongoose duplicate key
+  if (err.code === 11000) {
+    const message = 'Duplicate field value entered';
+    error = new ErrorResponse(message, 400);
   }
 
   // Mongoose validation
   if (err.name === 'ValidationError') {
-    message = 'Missing fields required';
+    const message = 'Fields require attention';
+    error = new ErrorResponse(message, 400);
     emptyFields = Object.values(err.errors).map((value) => value.path);
-    statusCode = 400;
   }
 
-  resObj = {
-    message,
+  res.status(error.statusCode || 500).json({
+    success: false,
+    message: error.message,
+    emptyFields,
     stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
-  };
-
-  if (emptyFields && emptyFields.length !== 0) {
-    resObj = { message, emptyFields, ...resObj };
-  }
-
-  res.status(statusCode).json(resObj);
+  });
 };
 
 module.exports = { notFound, errorHandler };

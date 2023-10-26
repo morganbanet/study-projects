@@ -1,6 +1,4 @@
 const express = require('express');
-const advancedResults = require('../middleware/resultsMiddleware');
-const User = require('../models/userModel');
 
 // prettier-ignore
 const { 

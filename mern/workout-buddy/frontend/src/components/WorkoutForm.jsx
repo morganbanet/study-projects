@@ -17,6 +17,7 @@ function WorkoutForm() {
     const data = await createWorkout({ title, load, reps });
 
     if (data.error) {
+      console.log(data);
       return dispatch({ type: 'SET_ERROR', payload: data.error });
     }
 

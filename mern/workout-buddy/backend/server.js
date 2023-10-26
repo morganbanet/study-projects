@@ -3,6 +3,7 @@ require('dotenv').config({ path: './config/config.env' });
 const mongoose = require('mongoose');
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 
 const workoutRoutes = require('./routes/workoutRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -13,9 +14,10 @@ const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Body parsers
+// Body & cookie parsers
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // Morgan config
 app.use(morgan('dev'));

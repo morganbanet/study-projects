@@ -1,12 +1,19 @@
 const User = require('../models/userModel');
-const generateToken = require('../utils/generateToken');
 const asyncHandler = require('../middleware/asyncMiddleware');
+const generateToken = require('../utils/generateToken');
 
 // @desc        Login user
 // @route       GET /api/users/login
 // @access      Public
 exports.loginUser = asyncHandler(async (req, res) => {
-  res.status(200).json({ success: true, data: user });
+  const { email, password } = req.body;
+  const user = await User.login(email, password);
+
+  const { userObj, token, options } = generateToken(user);
+  res
+    .status(200)
+    .cookie('jwt', token, options)
+    .json({ success: true, data: userObj });
 });
 
 // @desc        Register user
@@ -14,17 +21,11 @@ exports.loginUser = asyncHandler(async (req, res) => {
 // @access      Public
 exports.registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
+  const user = await User.register(username, email, password);
 
-  const userExists = await User.findOne({ email });
-
-  if (userExists) {
-    res.status(400);
-    throw new Error(`User already exists`);
-  }
-
-  const user = await User.create({ username, email, password });
-
-  const { userObj } = generateToken(user);
-
-  res.status(201).json({ success: true, data: userObj });
+  const { userObj, token, options } = generateToken(user);
+  res
+    .status(201)
+    .cookie('jwt', token, options)
+    .json({ success: true, data: userObj });
 });
