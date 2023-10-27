@@ -4,6 +4,11 @@ const slugify = require('slugify');
 
 const workoutSchema = new Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
     title: {
       type: String,
       trim: true,

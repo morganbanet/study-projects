@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { useWorkoutsContext } from '../hooks/workouts/useWorkoutsContext';
 import { createWorkout } from '../context/workouts/workoutsActions';
 
 function WorkoutForm() {
@@ -14,10 +14,10 @@ function WorkoutForm() {
     e.preventDefault();
 
     dispatch({ type: 'SET_LOADING' });
+
     const data = await createWorkout({ title, load, reps });
 
     if (data.error) {
-      console.log(data);
       return dispatch({ type: 'SET_ERROR', payload: data.error });
     }
 

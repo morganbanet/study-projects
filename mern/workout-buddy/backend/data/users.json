@@ -1,0 +1,102 @@
+[
+  {
+    "username": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "password123"
+  },
+  {
+    "username": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "password": "securepass456"
+  },
+  {
+    "username": "Michael Johnson",
+    "email": "michael.johnson@example.com",
+    "password": "pass321"
+  },
+  {
+    "username": "Emily Davis",
+    "email": "emily.davis@example.com",
+    "password": "1234abcd"
+  },
+  {
+    "username": "James Wilson",
+    "email": "james.wilson@example.com",
+    "password": "wilsonpass"
+  },
+  {
+    "username": "Jennifer Brown",
+    "email": "jennifer.brown@example.com",
+    "password": "brownie987"
+  },
+  {
+    "username": "David Lee",
+    "email": "david.lee@example.com",
+    "password": "leet1234"
+  },
+  {
+    "username": "Sarah Taylor",
+    "email": "sarah.taylor@example.com",
+    "password": "taylorpass"
+  },
+  {
+    "username": "Matthew Clark",
+    "email": "matthew.clark@example.com",
+    "password": "pass7890"
+  },
+  {
+    "username": "Laura Martinez",
+    "email": "laura.martinez@example.com",
+    "password": "martinez123"
+  },
+  {
+    "username": "Daniel Rodriguez",
+    "email": "daniel.rodriguez@example.com",
+    "password": "danielr321"
+  },
+  {
+    "username": "Amanda Hernandez",
+    "email": "amanda.hernandez@example.com",
+    "password": "hernandezpass"
+  },
+  {
+    "username": "Christopher Wilson",
+    "email": "christopher.wilson@example.com",
+    "password": "wilsonpass"
+  },
+  {
+    "username": "Rebecca Jones",
+    "email": "rebecca.jones@example.com",
+    "password": "jonespass"
+  },
+  {
+    "username": "Ryan Smith",
+    "email": "ryan.smith@example.com",
+    "password": "smithpass"
+  },
+  {
+    "username": "Nicole Davis",
+    "email": "nicole.davis@example.com",
+    "password": "davispw123"
+  },
+  {
+    "username": "Justin Miller",
+    "email": "justin.miller@example.com",
+    "password": "millerpass"
+  },
+  {
+    "username": "Lauren Brown",
+    "email": "lauren.brown@example.com",
+    "password": "brownpass"
+  },
+  {
+    "username": "Kevin Martinez",
+    "email": "kevin.martinez@example.com",
+    "password": "kevin123"
+  },
+  {
+    "username": "Olivia Johnson",
+    "email": "olivia.johnson@example.com",
+    "password": "johnsonpass"
+  }
+]

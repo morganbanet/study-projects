@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Bench Press",
+    "reps": 10,
+    "load": 80
+  },
+  {
+    "title": "Squat",
+    "reps": 8,
+    "load": 100
+  },
+  {
+    "title": "Deadlift",
+    "reps": 6,
+    "load": 120
+  },
+  {
+    "title": "Pull-up",
+    "reps": 12,
+    "load": 0
+  },
+  {
+    "title": "Push-up",
+    "reps": 15,
+    "load": 0
+  },
+  {
+    "title": "Leg Press",
+    "reps": 12,
+    "load": 150
+  },
+  {
+    "title": "Barbell Curl",
+    "reps": 10,
+    "load": 40
+  },
+  {
+    "title": "Plank",
+    "reps": 0,
+    "load": 0
+  },
+  {
+    "title": "Russian Twist",
+    "reps": 20,
+    "load": 0
+  },
+  {
+    "title": "Lunges",
+    "reps": 12,
+    "load": 0
+  },
+  {
+    "title": "Shoulder Press",
+    "reps": 8,
+    "load": 60
+  },
+  {
+    "title": "Dips",
+    "reps": 12,
+    "load": 0
+  },
+  {
+    "title": "Hammer Curl",
+    "reps": 10,
+    "load": 35
+  },
+  {
+    "title": "Leg Curls",
+    "reps": 12,
+    "load": 70
+  },
+  {
+    "title": "Tricep Extension",
+    "reps": 10,
+    "load": 45
+  },
+  {
+    "title": "Side Plank",
+    "reps": 0,
+    "load": 0
+  },
+  {
+    "title": "Flutter Kicks",
+    "reps": 30,
+    "load": 0
+  },
+  {
+    "title": "Bicycle Crunches",
+    "reps": 25,
+    "load": 0
+  },
+  {
+    "title": "Back Extensions",
+    "reps": 15,
+    "load": 0
+  },
+  {
+    "title": "Seated Row",
+    "reps": 12,
+    "load": 80
+  }
+]

@@ -13,7 +13,7 @@ const errorHandler = (err, req, res, next) => {
   let emptyFields = [];
 
   // Loggging for dev
-  console.log(JSON.parse(JSON.stringify(err)));
+  // console.log(JSON.parse(JSON.stringify(err)));
   console.log(err);
 
   // Mongoose bad object id
@@ -33,6 +33,18 @@ const errorHandler = (err, req, res, next) => {
     const message = 'Fields require attention';
     error = new ErrorResponse(message, 400);
     emptyFields = Object.values(err.errors).map((value) => value.path);
+  }
+
+  // JSON Web Token error
+  if (err.name === 'JsonWebTokenError') {
+    const message = 'Not authorized to access this resource';
+    error = new ErrorResponse(message, 401);
+  }
+
+  // JSON Web Token expired
+  if (err.name === 'TokenExpiredError') {
+    const message = 'Token expired, please sign in again';
+    error = new ErrorResponse(message, 401);
   }
 
   res.status(error.statusCode || 500).json({

@@ -1,3 +1,5 @@
+// @Todo: Create hooks instead of using these functions
+
 export const getWorkouts = async () => {
   const response = await fetch('/api/workouts');
   const data = await response.json();

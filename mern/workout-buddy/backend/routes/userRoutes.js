@@ -1,15 +1,18 @@
 const express = require('express');
 
-// prettier-ignore
-const { 
-  loginUser, 
-  registerUser 
+const { protect } = require('../middleware/authMiddleware');
+
+const {
+  loginUser,
+  registerUser,
+  logoutUser,
 } = require('../controllers/userController');
 
 const router = express.Router();
 
 router.post('/login', loginUser);
 router.post('/register', registerUser);
+router.post('/logout', protect, logoutUser);
 
 // prettier-ignore
 router.route('/:id')

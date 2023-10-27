@@ -1,6 +1,6 @@
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { useWorkoutsContext } from '../hooks/workouts/useWorkoutsContext';
 import { deleteWorkout } from '../context/workouts/workoutsActions';
 
 function WorkoutDetails({ workout }) {

@@ -58,14 +58,17 @@ userSchema.statics.register = async function (username, email, password) {
   if (!username || !email || !password) {
     throw new ErrorResponse('Please fill in all fields', 400);
   }
+
   if (!validator.isEmail(email)) {
     throw new ErrorResponse('Invalid email');
   }
+
   if (!validator.isStrongPassword(password)) {
     throw new ErrorResponse('Password not strong enough', 400);
   }
 
   const userExists = await this.findOne({ email });
+
   if (userExists) {
     throw new ErrorResponse('User already exists with that email', 400);
   }
@@ -82,11 +85,13 @@ userSchema.statics.login = async function (email, password) {
   }
 
   const user = await this.findOne({ email }).select('+password');
+
   if (!user) {
     throw new ErrorResponse('Invalid credentials', 401);
   }
 
   const isMatch = await user.matchPassword(password);
+
   if (!isMatch) {
     throw new ErrorResponse('Invalid credentials', 401);
   }
