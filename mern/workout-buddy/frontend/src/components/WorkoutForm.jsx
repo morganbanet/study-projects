@@ -1,27 +1,17 @@
 import { useState } from 'react';
-
-import { useWorkoutsContext } from '../hooks/workouts/useWorkoutsContext';
-import { createWorkout } from '../context/workouts/workoutsActions';
+import { useCreateWorkout } from '../hooks/workouts/useCreateWorkout';
 
 function WorkoutForm() {
-  const { dispatch, isLoading, error } = useWorkoutsContext();
-
   const [title, setTitle] = useState('');
   const [load, setLoad] = useState('');
   const [reps, setReps] = useState('');
 
+  const { createWorkout, isLoading, error } = useCreateWorkout();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    dispatch({ type: 'SET_LOADING' });
-
-    const data = await createWorkout({ title, load, reps });
-
-    if (data.error) {
-      return dispatch({ type: 'SET_ERROR', payload: data.error });
-    }
-
-    dispatch({ type: 'CREATE_WORKOUT', payload: data.workout });
+    await createWorkout(title, load, reps);
 
     setTitle('');
     setLoad('');
@@ -56,8 +46,8 @@ function WorkoutForm() {
         className={error && error.emptyFields.includes('reps') ? 'error' : ''}
       />
 
-      {!isLoading && <button>Add Workout</button>}
-      {error && <div className="error">{error.message}</div>}
+      <button disabled={isLoading}>Add Workout</button>
+      {error && <div className="error">{error}</div>}
     </form>
   );
 }

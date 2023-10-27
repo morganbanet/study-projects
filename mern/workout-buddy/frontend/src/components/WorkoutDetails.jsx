@@ -1,20 +1,11 @@
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-
-import { useWorkoutsContext } from '../hooks/workouts/useWorkoutsContext';
-import { deleteWorkout } from '../context/workouts/workoutsActions';
+import { useDeleteWorkout } from '../hooks/workouts/useDeleteWorkout';
 
 function WorkoutDetails({ workout }) {
-  const { dispatch } = useWorkoutsContext();
+  const { deleteWorkout, isLoading, error } = useDeleteWorkout();
 
   const handleClick = async () => {
-    dispatch({ type: 'SET_LOADING' });
-    const data = await deleteWorkout(workout._id);
-
-    if (data.error) {
-      return dispatch({ type: 'SET_ERROR', payload: data.error });
-    }
-
-    dispatch({ type: 'DELETE_WORKOUT', payload: workout });
+    await deleteWorkout(workout._id);
   };
 
   return (

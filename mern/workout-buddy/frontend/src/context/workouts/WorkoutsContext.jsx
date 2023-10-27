@@ -6,8 +6,6 @@ const WorkoutsContext = createContext();
 function WorkoutsProvider({ children }) {
   const initialState = {
     workouts: null,
-    isLoading: false,
-    error: null,
   };
 
   const [state, dispatch] = useReducer(workoutsReducer, initialState);

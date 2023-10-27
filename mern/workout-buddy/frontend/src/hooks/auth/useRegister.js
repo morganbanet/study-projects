@@ -22,9 +22,6 @@ export const useRegister = () => {
     const response = await fetch('/api/users/register', options);
     const data = await response.json();
 
-    // Dev logging
-    console.log(data);
-
     if (!response.ok) {
       setIsLoading(false);
       setError(data.message);

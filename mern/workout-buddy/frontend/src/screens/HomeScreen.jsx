@@ -1,28 +1,30 @@
 import { useEffect } from 'react';
 
+import { useAuthContext } from '../hooks/auth/useAuthContext';
 import { useWorkoutsContext } from '../hooks/workouts/useWorkoutsContext';
-import { getWorkouts } from '../context/workouts/workoutsActions';
+
+import { useGetWorkouts } from '../hooks/workouts/useGetWorkouts';
 
 import WorkoutDetails from '../components/WorkoutDetails';
 import WorkoutForm from '../components/WorkoutForm';
 
 function HomeScreen() {
-  const { workouts, dispatch } = useWorkoutsContext();
+  const { getWorkouts, isLoading, error } = useGetWorkouts();
+
+  const { workouts } = useWorkoutsContext();
+  const { userInfo } = useAuthContext();
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      dispatch({ type: 'SET_LOADING' });
-      const data = await getWorkouts();
-
-      if (data.error) {
-        return dispatch({ type: 'SET_ERROR', payload: data.error });
-      }
-
-      dispatch({ type: 'GET_WORKOUTS', payload: data.workouts });
+      await getWorkouts();
     };
 
+    if (!userInfo) {
+      return;
+    }
+
     fetchWorkouts();
-  }, [dispatch]);
+  }, [userInfo]);
 
   return (
     <div className="home">
