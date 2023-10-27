@@ -16,11 +16,10 @@ const generateToken = (user) => {
     maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
   };
 
-  // Exclude hashed password
+  // Exclude hashed password & isAdmin
   const userObj = {
     username: user.username,
     email: user.email,
-    isAdmin: user.isAdmin,
     _id: user.id,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,

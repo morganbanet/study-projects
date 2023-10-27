@@ -1,6 +1,7 @@
 const express = require('express');
-const advancedResults = require('../middleware/resultsMiddleware');
+
 const Workout = require('../models/workoutModel');
+const { protect, checkOwnership } = require('../middleware/authMiddleware');
 
 const {
   getWorkouts,
@@ -12,15 +13,19 @@ const {
 
 const router = express.Router();
 
+// Protect all routes
+router.use(protect);
+
 // prettier-ignore
 router.route('/')
-  .get(advancedResults(Workout), getWorkouts)
+  .get(getWorkouts)
   .post(createWorkout);
 
 // prettier-ignore
-router.route('/:id')
-  .get(getWorkout)
-  .patch(updateWorkout)
-  .delete(deleteWorkout);
+router
+  .route('/:id')
+  .get(checkOwnership(Workout), getWorkout)
+  .patch(checkOwnership(Workout), updateWorkout)
+  .delete(checkOwnership(Workout), deleteWorkout)
 
 module.exports = router;

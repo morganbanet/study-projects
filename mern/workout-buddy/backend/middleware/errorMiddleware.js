@@ -14,7 +14,7 @@ const errorHandler = (err, req, res, next) => {
 
   // Loggging for dev
   // console.log(JSON.parse(JSON.stringify(err)));
-  console.log(err);
+  // console.log(err);
 
   // Mongoose bad object id
   if (err.name === 'CastError') {

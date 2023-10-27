@@ -1,11 +1,17 @@
 const asyncHandler = require('../middleware/asyncMiddleware');
 const Workout = require('../models/workoutModel');
 
-// @desc        Get workouts
+// @desc        Get workouts (for a user)
 // @route       GET /api/workouts
 // @access      Private
 exports.getWorkouts = asyncHandler(async (req, res) => {
-  res.status(200).json(res.advancedResults);
+  const workouts = await Workout.find({ user: req.user.id }).sort({
+    createdAt: 'desc',
+  });
+
+  res
+    .status(200)
+    .json({ success: true, count: workouts.length, data: workouts });
 });
 
 // @desc        Get workout
@@ -26,6 +32,8 @@ exports.getWorkout = asyncHandler(async (req, res) => {
 // @route       POST /api/workouts
 // @access      Private
 exports.createWorkout = asyncHandler(async (req, res) => {
+  req.body.user = req.user.id;
+
   const workout = await Workout.create(req.body);
 
   return res.status(201).json({ success: true, data: workout });
