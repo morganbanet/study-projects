@@ -1,9 +1,13 @@
 import { useState } from 'react';
+
 import { useAuthContext } from './useAuthContext';
+import { useWorkoutsContext } from '../workouts/useWorkoutsContext';
 
 export const useLogout = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+
+  const { dispatch: dispatchWorkouts } = useWorkoutsContext();
 
   const { dispatch } = useAuthContext();
 
@@ -23,6 +27,9 @@ export const useLogout = () => {
       setError(data.message);
       return;
     }
+
+    // Clear workouts state from client (prevent flicker of prev data)
+    dispatchWorkouts({ type: 'GET_WORKOUTS', payload: null });
 
     // Remove user from local storage
     localStorage.clear();

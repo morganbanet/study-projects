@@ -1,9 +1,13 @@
 import { useState } from 'react';
+
 import { useAuthContext } from './useAuthContext';
+import { useWorkoutsContext } from '../workouts/useWorkoutsContext';
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(null);
   const [error, setError] = useState(null);
+
+  const { dispatch: dispatchWorkouts } = useWorkoutsContext();
 
   const { dispatch } = useAuthContext();
 
@@ -27,6 +31,9 @@ export const useLogin = () => {
       setError(data.message);
       return;
     }
+
+    // Clear workouts state from client (prevent flicker of prev data)
+    dispatchWorkouts({ type: 'GET_WORKOUTS', payload: null });
 
     // Set maxAge for userInfo in local storage (matches JWT maxAge)
     const maxAge = 30 * 24 * 60 * 60 * 1000; // 30 days

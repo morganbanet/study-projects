@@ -10,8 +10,6 @@ const errorHandler = (err, req, res, next) => {
   let error = { ...err };
   error.message = err.message;
 
-  let emptyFields = [];
-
   // Loggging for dev
   // console.log(JSON.parse(JSON.stringify(err)));
   // console.log(err);
@@ -30,9 +28,8 @@ const errorHandler = (err, req, res, next) => {
 
   // Mongoose validation
   if (err.name === 'ValidationError') {
-    const message = 'Fields require attention';
+    message = Object.values(err.errors).map((value) => value.path);
     error = new ErrorResponse(message, 400);
-    emptyFields = Object.values(err.errors).map((value) => value.path);
   }
 
   // JSON Web Token error
@@ -50,7 +47,7 @@ const errorHandler = (err, req, res, next) => {
   res.status(error.statusCode || 500).json({
     success: false,
     message: error.message,
-    emptyFields,
+    emptyFields: error.emptyFields || undefined,
     stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
   });
 };

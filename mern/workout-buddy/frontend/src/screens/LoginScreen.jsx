@@ -7,9 +7,13 @@ function LoginScreen() {
 
   const { login, isLoading, error } = useLogin();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await login(email, password);
+
+    login(email, password);
+
+    setEmail('');
+    setPassword('');
   };
 
   return (

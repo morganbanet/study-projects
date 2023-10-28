@@ -1,15 +1,22 @@
 import { useState } from 'react';
+import { useAuthContext } from '../auth/useAuthContext';
 import { useWorkoutsContext } from './useWorkoutsContext';
 
 export const useCreateWorkout = () => {
   const [isLoading, setIsLoading] = useState(null);
   const [error, setError] = useState(null);
 
+  const { userInfo } = useAuthContext();
   const { dispatch } = useWorkoutsContext();
 
   const createWorkout = async (title, load, reps) => {
     setIsLoading(true);
-    setError(null);
+
+    if (!userInfo) {
+      setError({ message: 'You must be logged in' });
+      setIsLoading(false);
+      return;
+    }
 
     const body = { title, load, reps };
 
@@ -24,7 +31,7 @@ export const useCreateWorkout = () => {
 
     if (!response.ok) {
       setIsLoading(false);
-      setError(data.message);
+      setError(data);
       return;
     }
 
@@ -32,6 +39,7 @@ export const useCreateWorkout = () => {
     dispatch({ type: 'CREATE_WORKOUT', payload: data.data });
 
     setIsLoading(false);
+    setError(null);
   };
 
   return { createWorkout, isLoading, error };

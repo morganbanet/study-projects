@@ -8,14 +8,16 @@ function WorkoutForm() {
 
   const { createWorkout, isLoading, error } = useCreateWorkout();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    await createWorkout(title, load, reps);
+    createWorkout(title, load, reps);
 
-    setTitle('');
-    setLoad('');
-    setReps('');
+    if (title && load && reps) {
+      setTitle('');
+      setLoad('');
+      setReps('');
+    }
   };
 
   return (
@@ -27,7 +29,7 @@ function WorkoutForm() {
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className={error && error.emptyFields.includes('title') ? 'error' : ''}
+        className={error?.emptyFields?.includes('title') ? 'error' : ''}
       />
 
       <label>Load (in kg):</label>
@@ -35,7 +37,7 @@ function WorkoutForm() {
         type="number"
         value={load}
         onChange={(e) => setLoad(e.target.value)}
-        className={error && error.emptyFields.includes('load') ? 'error' : ''}
+        className={error?.emptyFields?.includes('load') ? 'error' : ''}
       />
 
       <label>Reps:</label>
@@ -43,11 +45,11 @@ function WorkoutForm() {
         type="number"
         value={reps}
         onChange={(e) => setReps(e.target.value)}
-        className={error && error.emptyFields.includes('reps') ? 'error' : ''}
+        className={error?.emptyFields?.includes('reps') ? 'error' : ''}
       />
 
       <button disabled={isLoading}>Add Workout</button>
-      {error && <div className="error">{error}</div>}
+      {error && <div className="error">{error.message}</div>}
     </form>
   );
 }

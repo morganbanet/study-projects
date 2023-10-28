@@ -9,19 +9,13 @@ import WorkoutDetails from '../components/WorkoutDetails';
 import WorkoutForm from '../components/WorkoutForm';
 
 function HomeScreen() {
-  const { getWorkouts, isLoading, error } = useGetWorkouts();
+  const { getWorkouts } = useGetWorkouts();
 
   const { workouts } = useWorkoutsContext();
   const { userInfo } = useAuthContext();
 
   useEffect(() => {
-    const fetchWorkouts = async () => {
-      await getWorkouts();
-    };
-
-    if (!userInfo) {
-      return;
-    }
+    const fetchWorkouts = async () => await getWorkouts();
 
     fetchWorkouts();
   }, [userInfo]);

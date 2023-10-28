@@ -8,9 +8,12 @@ function RegisterScreen() {
 
   const { register, isLoading, error } = useRegister();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await register(username, email, password);
+
+    register(username, email, password);
+
+    setPassword('');
   };
 
   return (
