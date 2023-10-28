@@ -9,6 +9,8 @@ const cookieParser = require('cookie-parser');
 const workoutRoutes = require('./routes/workoutRoutes');
 const userRoutes = require('./routes/userRoutes');
 
+const deployment = require('./config/deployment');
+
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 // Express config
@@ -27,20 +29,8 @@ app.use(morgan('dev'));
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/users', userRoutes);
 
-// Deployment configuration
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '..', 'frontend/dist')));
-
-  app.get('*', (req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html')
-    )
-  );
-} else {
-  app.get('/', (req, res) => {
-    res.send('API running...');
-  });
-}
+// Deployment configuration (via mounted route)
+app.use(deployment);
 
 // Error handlers
 app.use(notFound);
