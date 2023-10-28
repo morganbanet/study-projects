@@ -5,7 +5,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-import { AuthProvider } from './context/auth/authContext';
+import { AuthProvider } from './context/auth/AuthContext';
 import { WorkoutsProvider } from './context/workouts/WorkoutsContext';
 
 import RootLayout from './layouts/RootLayout';
