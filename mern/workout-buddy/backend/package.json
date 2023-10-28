@@ -8,6 +8,7 @@
     "server": "nodemon server.js",
     "client": "npm run dev --prefix ../frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
     "data:import": "node config/seeder",
     "data:flush": "node config/seeder -f"
   },

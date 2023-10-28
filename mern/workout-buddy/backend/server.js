@@ -1,5 +1,6 @@
 require('dotenv').config({ path: './config/config.env' });
 
+const path = require('path');
 const mongoose = require('mongoose');
 const express = require('express');
 const morgan = require('morgan');
@@ -25,6 +26,21 @@ app.use(morgan('dev'));
 // Route mounts
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/users', userRoutes);
+
+// Deployment configuration
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'frontend/dist')));
+
+  app.get('*', (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, '..', 'frontend', 'dist', 'index.html')
+    )
+  );
+} else {
+  app.get('/', (req, res) => {
+    res.send('API running...');
+  });
+}
 
 // Error handlers
 app.use(notFound);

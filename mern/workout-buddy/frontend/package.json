@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config ./config/vite.config",
-    "build": "vite build",
+    "build": "vite build --config ./config/vite.config",
     "lint": "eslint --config ./config/.eslintrc.cjs . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview --config ./config/vite.config"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
