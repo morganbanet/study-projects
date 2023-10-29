@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config ./config/vite.config.js",
-    "build": "vite build --config ./config/vite.config.js",
+    "build": "vite build --config ./config/vite.config.js --emptyOutDir",
     "preview": "vite preview --config ./config/vite.config.js"
   },
   "devDependencies": {
