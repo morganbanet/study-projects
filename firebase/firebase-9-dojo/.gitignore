@@ -24,4 +24,8 @@ dist-ssr
 *.sw?
 
 # Environment variables
+backend/config/config.env
+backend/config.env
+config/config.env
+config.env
 .env
