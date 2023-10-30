@@ -1,4 +1,12 @@
+import Title from './components/Title';
+import UploadForm from './components/UploadForm';
+
 function App() {
-  return <div>App</div>;
+  return (
+    <div className="App">
+      <Title />
+      <UploadForm />
+    </div>
+  );
 }
 export default App;
