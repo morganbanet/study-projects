@@ -1,4 +1,4 @@
-const asyncHandler = require('../middleware/asyncMiddleware');
+const asyncHandler = require('../utils/asyncHandler');
 const Workout = require('../models/workoutModel');
 
 // @desc        Get workouts (for a user)
@@ -34,7 +34,7 @@ exports.getWorkout = asyncHandler(async (req, res) => {
 exports.createWorkout = asyncHandler(async (req, res) => {
   req.body.user = req.user.id;
 
-  const workout = await Workout.createWorkout(req.body);
+  const workout = await Workout.createWorkout(req.body, req.files);
 
   return res.status(201).json({ success: true, data: workout });
 });

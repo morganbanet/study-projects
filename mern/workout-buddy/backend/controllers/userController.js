@@ -1,5 +1,5 @@
 const User = require('../models/userModel');
-const asyncHandler = require('../middleware/asyncMiddleware');
+const asyncHandler = require('../utils/asyncHandler');
 const generateToken = require('../utils/generateToken');
 
 // @desc        Login user

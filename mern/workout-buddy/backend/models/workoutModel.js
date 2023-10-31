@@ -24,6 +24,7 @@ const workoutSchema = new Schema(
       type: Number,
       required: [true, 'Workout must include a load'],
     },
+    images: [{ url: String, filename: String }],
     slug: String,
   },
   {
@@ -36,10 +37,11 @@ workoutSchema.pre('save', function (next) {
   next();
 });
 
-workoutSchema.statics.createWorkout = async function (body) {
-  const { title, load, reps, user } = body;
+workoutSchema.statics.createWorkout = async function (body, files) {
+  const { title, load, reps } = body;
 
-  let emptyFields = [];
+  // Check form fields
+  const emptyFields = [];
 
   if (!title) {
     emptyFields.push('title');
@@ -53,11 +55,18 @@ workoutSchema.statics.createWorkout = async function (body) {
     emptyFields.push('reps');
   }
 
+  console.log(emptyFields);
+
   if (emptyFields.length > 0) {
     throw new ErrorResponse('Please fill in all fields', 400, emptyFields);
   }
 
-  const workout = await this.create({ title, load, reps, user });
+  // Save any image urls & names to db
+  if (files) {
+    body.images = files.map((f) => ({ url: f.path, filename: f.filename }));
+  }
+
+  const workout = await this.create(body);
 
   return workout;
 };

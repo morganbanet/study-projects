@@ -1,6 +1,5 @@
 require('dotenv').config({ path: './config/config.env' });
 
-const path = require('path');
 const mongoose = require('mongoose');
 const express = require('express');
 const morgan = require('morgan');
@@ -19,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 
 // Body & cookie parsers
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Morgan config
