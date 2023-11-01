@@ -14,6 +14,7 @@ const useStorage = (file) => {
   useEffect(() => {
     // References
     const storageRef = ref(projectStorage, file.name);
+
     const collectionRef = collection(projectFirestore, 'images');
 
     const uploadTask = uploadBytesResumable(storageRef, file);
