@@ -1,4 +1,5 @@
 require('dotenv').config({ path: './config/config.env' });
+const { cloudinary } = require('../services/cloudinary');
 
 const mongoose = require('mongoose');
 const colors = require('colors');
@@ -66,6 +67,14 @@ const flushData = async () => {
     // Flush data
     await User.deleteMany();
     await Workout.deleteMany();
+
+    // Flush cloudinary assets
+    cloudinary.api.delete_resources_by_prefix(
+      'workout-buddy',
+      function (result) {
+        console.log(result);
+      }
+    );
 
     console.log('Database successfully flushed!'.bgGreen);
     process.exit();

@@ -17,11 +17,7 @@ exports.userSchema = Joi.object({
 
   password: Joi.string()
     .required()
-    .pattern(
-      new RegExp(
-        '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$'
-      )
-    ),
+    .min(6),
 
   email: Joi.string()
     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })

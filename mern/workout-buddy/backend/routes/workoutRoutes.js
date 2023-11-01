@@ -1,13 +1,9 @@
 const express = require('express');
 const storage = require('../services/cloudinary');
 const multer = require('multer');
-const upload = multer({ storage });
 
 const Workout = require('../models/workoutModel');
 const { protect, checkOwnership } = require('../middleware/authMiddleware');
-
-const { validate } = require('../middleware/validateMiddleware');
-const { workoutSchema } = require('../validation/schemas');
 
 const {
   getWorkouts,
@@ -24,6 +20,7 @@ const router = express.Router();
 // which matches the input name of the form.
 // If uploading multiple files in the client, use "array" in place of
 // "single" and access via "req.files" instead of "req.file".
+const upload = multer({ storage });
 
 // Protect all routes
 router.use(protect);
@@ -32,13 +29,13 @@ router.use(protect);
 router
   .route('/')
   .get(getWorkouts)
-  .post(upload.array('images'), validate(workoutSchema), createWorkout);
+  .post(upload.array('images'), createWorkout);
 
 // prettier-ignore
 router
   .route('/:id')
   .get(checkOwnership(Workout), getWorkout)
-  .patch(checkOwnership(Workout), upload.array('images'), validate(workoutSchema), updateWorkout)
+  .patch(checkOwnership(Workout), upload.array('images'), updateWorkout)
   .delete(checkOwnership(Workout), deleteWorkout)
 
 // prettier-ignore

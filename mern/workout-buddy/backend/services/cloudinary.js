@@ -15,6 +15,8 @@ const storage = new CloudinaryStorage({
   params: {
     folder: 'workout-buddy',
     allowed_formats: ['jpeg', 'jpg', 'png'],
+    resource_type: 'auto',
+    chunk_size: 40 * 1024 * 1024, // 40mb max upload (10mb on free plan)
   },
 });
 

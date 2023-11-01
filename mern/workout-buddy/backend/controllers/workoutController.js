@@ -1,3 +1,4 @@
+const { cloudinary } = require('../services/cloudinary');
 const asyncHandler = require('../utils/asyncHandler');
 const Workout = require('../models/workoutModel');
 
@@ -91,6 +92,13 @@ exports.deleteWorkout = asyncHandler(async (req, res) => {
     throw new Error(`Workout not found with id ${req.params.id}`);
   }
 
+  const filenames = workout.images.map((image) => image.filename);
+
+  // Delete each image from Cloudinary
+  filenames.forEach(async (file) => {
+    await cloudinary.uploader.destroy(file);
+  });
+
   await workout.deleteOne();
 
   return res.status(200).json({ success: true, data: {} });
@@ -108,11 +116,15 @@ exports.UploadWorkoutImages = asyncHandler(async (req, res, next) => {
     );
   }
 
-  // Save each image url & filename to db
-  const images = req.files.map((file) => ({
+  // Get url and filename of each image
+  let reqImages = req.files.map((file) => ({
     url: file.path,
     filename: file.filename,
   }));
+
+  // Append onto current images
+  const images = workout.images;
+  images.push(...reqImages);
 
   // prettier-ignore
   workout = await Workout.findByIdAndUpdate(req.params.id, { images }, {
