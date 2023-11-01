@@ -75,8 +75,6 @@ npm run preview   // Run app in preview mode
 
 ## Continued development
 
-Ideas for future development...
-
 - Authentication and user profiles
 - Images associated per user
 - Dark mode
