@@ -51,6 +51,7 @@ label {
   color: var(--primary);
   font-weight: bold;
   font-size: 24px;
+  cursor: pointer;
 }
 label:hover {
   background: var(--primary);
@@ -87,12 +88,16 @@ label:hover {
   opacity: 0.8;
 }
 .img-wrap img {
-  min-width: 100%;
+  /* min-width: 100%;
   min-height: 100%;
-  max-width: 150%;
+  max-width: 150%; */
+  height: 100%;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* modal styles */
