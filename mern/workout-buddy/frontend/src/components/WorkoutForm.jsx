@@ -5,19 +5,22 @@ function WorkoutForm() {
   const [title, setTitle] = useState('');
   const [load, setLoad] = useState('');
   const [reps, setReps] = useState('');
+  const [files, setFiles] = useState(null);
 
   const { createWorkout, isLoading, error } = useCreateWorkout();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createWorkout(title, load, reps);
+    createWorkout(title, load, reps, files);
 
     if (title && load && reps) {
       setTitle('');
       setLoad('');
       setReps('');
     }
+
+    setFiles(null);
   };
 
   return (
@@ -27,6 +30,7 @@ function WorkoutForm() {
       <label>Workout Title:</label>
       <input
         type="text"
+        name="title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         className={error?.emptyFields?.includes('title') ? 'error' : ''}
@@ -35,6 +39,7 @@ function WorkoutForm() {
       <label>Load (in kg):</label>
       <input
         type="number"
+        name="load"
         value={load}
         onChange={(e) => setLoad(e.target.value)}
         className={error?.emptyFields?.includes('load') ? 'error' : ''}
@@ -43,12 +48,23 @@ function WorkoutForm() {
       <label>Reps:</label>
       <input
         type="number"
+        name="reps"
         value={reps}
         onChange={(e) => setReps(e.target.value)}
         className={error?.emptyFields?.includes('reps') ? 'error' : ''}
       />
 
-      <button disabled={isLoading}>Add Workout</button>
+      <label>Images (max 3):</label>
+      <input
+        type="file"
+        name="images"
+        onChange={(e) => setFiles(e.target.files)}
+        multiple // Add on 'multiple' attribute for multiple images
+      />
+
+      {!isLoading && <button>Add Workout</button>}
+      {isLoading && <span>Submitting...</span>}
+
       {error && <div className="error">{error.message}</div>}
     </form>
   );

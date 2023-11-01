@@ -9,7 +9,7 @@ export const useCreateWorkout = () => {
   const { userInfo } = useAuthContext();
   const { dispatch } = useWorkoutsContext();
 
-  const createWorkout = async (title, load, reps) => {
+  const createWorkout = async (title, load, reps, files) => {
     setIsLoading(true);
 
     if (!userInfo) {
@@ -18,15 +18,21 @@ export const useCreateWorkout = () => {
       return;
     }
 
-    const body = { title, load, reps };
+    // multipart/form-data
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('load', load), formData.append('reps', reps);
 
-    const options = {
+    // Append multiple images to formData
+    for (let x = 0; x < files.length; x++) {
+      formData.append('images', files[x]);
+    }
+
+    const response = await fetch('/api/workouts/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    };
+      body: formData,
+    });
 
-    const response = await fetch('/api/workouts/', options);
     const data = await response.json();
 
     if (!response.ok) {
@@ -35,8 +41,10 @@ export const useCreateWorkout = () => {
       return;
     }
 
-    // Set non-sensitive user info in state
-    dispatch({ type: 'CREATE_WORKOUT', payload: data.data });
+    dispatch({
+      type: 'CREATE_WORKOUT',
+      payload: data.data,
+    });
 
     setIsLoading(false);
     setError(null);

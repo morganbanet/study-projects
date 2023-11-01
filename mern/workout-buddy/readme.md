@@ -31,6 +31,7 @@ This application contains the following features:
 - Protects routes from unauthorized users requiring signing in
 - Checks ownership of resources when users make requests
 - Hashes passwords and reset tokens using encryption packages
+- Image uploading for each workout
 
 ### Screenshots
 
@@ -54,6 +55,7 @@ _Note that free instance types on Render will spin down with inactivity. Please 
 - [Mongoose](https://mongoosejs.com/) - Object modelling for MongoDB data
 - [Compass](https://www.mongodb.com/products/tools/compass) - GUI for MongoDB querying & analyzing
 - [Postman](https://www.postman.com/) - API testing & workspace environment
+- [Cloudinary](https://cloudinary.com/) - Cloud based image & file hosting
 - [Render](https://render.com/) - Hosting & deployment
 
 ## Usage
