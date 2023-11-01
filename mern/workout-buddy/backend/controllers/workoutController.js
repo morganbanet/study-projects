@@ -34,7 +34,15 @@ exports.getWorkout = asyncHandler(async (req, res) => {
 exports.createWorkout = asyncHandler(async (req, res) => {
   req.body.user = req.user.id;
 
-  const workout = await Workout.createWorkout(req.body, req.files);
+  // Save each image url & filename to db
+  if (req.files) {
+    req.body.images = req.files.map((file) => ({
+      url: file.path,
+      filename: file.filename,
+    }));
+  }
+
+  const workout = await Workout.create(req.body);
 
   return res.status(201).json({ success: true, data: workout });
 });
@@ -48,6 +56,17 @@ exports.updateWorkout = asyncHandler(async (req, res) => {
   if (!workout) {
     res.status(404);
     throw new Error(`Workout not found with id ${req.params.id}`);
+  }
+
+  // Append images to current images & save urls to db
+  if (req.files) {
+    let imagesToUpload = req.files.map((file) => ({
+      url: file.path,
+      filename: file.filename,
+    }));
+
+    req.body.images = workout.images;
+    req.body.images.push(...imagesToUpload);
   }
 
   workout = await Workout.findByIdAndUpdate(req.params.id, req.body, {
@@ -75,4 +94,31 @@ exports.deleteWorkout = asyncHandler(async (req, res) => {
   await workout.deleteOne();
 
   return res.status(200).json({ success: true, data: {} });
+});
+
+// @desc        Upload workout images
+// @route       DELETE /api/workouts/:id/images
+// @access      Private
+exports.UploadWorkoutImages = asyncHandler(async (req, res, next) => {
+  let workout = await Workout.findById(req.params.id);
+
+  if (!workout) {
+    return next(
+      new ErrorResponse(`Workout not found with id ${req.params.id}`)
+    );
+  }
+
+  // Save each image url & filename to db
+  const images = req.files.map((file) => ({
+    url: file.path,
+    filename: file.filename,
+  }));
+
+  // prettier-ignore
+  workout = await Workout.findByIdAndUpdate(req.params.id, { images }, {
+    runValidators: true,
+    new: true,
+  });
+
+  res.status(200).json({ success: true, data: workout });
 });

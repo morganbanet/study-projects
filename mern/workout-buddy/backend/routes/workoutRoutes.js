@@ -6,12 +6,16 @@ const upload = multer({ storage });
 const Workout = require('../models/workoutModel');
 const { protect, checkOwnership } = require('../middleware/authMiddleware');
 
+const { validate } = require('../middleware/validateMiddleware');
+const { workoutSchema } = require('../validation/schemas');
+
 const {
   getWorkouts,
   getWorkout,
   createWorkout,
   updateWorkout,
   deleteWorkout,
+  UploadWorkoutImages,
 } = require('../controllers/workoutController');
 
 const router = express.Router();
@@ -25,15 +29,21 @@ const router = express.Router();
 router.use(protect);
 
 // prettier-ignore
-router.route('/')
+router
+  .route('/')
   .get(getWorkouts)
-  .post(upload.array('images'), createWorkout);
+  .post(upload.array('images'), validate(workoutSchema), createWorkout);
 
 // prettier-ignore
 router
   .route('/:id')
   .get(checkOwnership(Workout), getWorkout)
-  .patch(checkOwnership(Workout), updateWorkout)
+  .patch(checkOwnership(Workout), upload.array('images'), validate(workoutSchema), updateWorkout)
   .delete(checkOwnership(Workout), deleteWorkout)
+
+// prettier-ignore
+router
+  .route('/:id/images')
+  .patch(checkOwnership(Workout), upload.array('images'), UploadWorkoutImages)
 
 module.exports = router;

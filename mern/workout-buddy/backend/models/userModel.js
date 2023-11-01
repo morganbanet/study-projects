@@ -26,6 +26,10 @@ const userSchema = new Schema(
       required: [true, 'Password must be a minimum of 6 characters'],
       minlength: 6,
       select: false,
+      match: [
+        '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$',
+        'Password not strong enough',
+      ],
     },
     isAdmin: {
       type: Boolean,
