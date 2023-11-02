@@ -2,44 +2,65 @@
 let id: number = 5;
 let company: string = 'Morgan Studios';
 let isPublished: boolean = true;
-let x: any = 'Hello'; // Can be of any type
-let age: number; // Initialize with no assignment
 
-// Arrays
-let ids: number[] = [1, 2, 3, 4, 5]; // Array that contains only numbers
-let arr: any[] = [4, true, 'Hey']; // Array that contains any type
+// Can be of any type
+let x: any = 'Hello'; 
 
-// Tuple (specify the types of each item)
+// Declare type for variable with no assignment
+let age: number; 
+
+
+
+
+// Arrays - define the type for an entire array
+let ids: number[] = [1, 2, 3, 4, 5];
+let arr: any[] = [4, true, 'Hey']; 
+
+
+
+
+// Tuple - define types for each item in an array
 let person: [number, string, boolean] = [1, 'Morgan', true];
 
-// Tuple Array
-let employee: [number, string][]; // Each array contains number & string
+
+// Tuple Array - define types for items in each array within an array
+let employee: [number, string][];
 employee = [
   [1, 'Morgan'],
   [2, 'John'],
   [3, 'Sarah'],
 ];
 
+
+
+
 // Union (allow a variable hold multiple specific types)
 let _id: string | number = 22;
 
-// Enum (define a set of named constants, either numeric or string)
+
+
+
+// Enums - Define a group of const(ants), either numeric or string.
+// Define the first value and the rest will update to reflect it (2-5)
 enum Direction1 {
-  Up = 1, // Change to 1 and others will follow accordingly
+  Up = 2,
   Down,
   Left,
   Right,
 }
 
-// Enums are basically just a set of const(ants)!
+// Defining strings for each enum
 enum Direction2 {
   Up = 'Hey',
   Down = 'There',
-  Left = 'Whats',
-  Right = 'Up',
+  Left = 'Good',
+  Right = 'Bye',
 }
 
-// Objects
+
+
+
+// Objects - define types for each property value
 type User = {
   id: number;
   name: string;
@@ -50,26 +71,29 @@ const user = {
   name: 'John',
 };
 
-// Looks messy, so we'll do the approach above instead
-// const user: {
-//   id: number;
-//   name: string;
-// } = {
-//   id: 1,
-//   name: 'John',
-// };
+// Alternative syntax for objects, though is messy
+const user2: {
+  id: number;
+  name: string;
+} = {
+  id: 1,
+  name: 'John',
+};
 
-// Type Assertion (explicitly tell the compiler that we want to treat
-// an entity as a different type). Here we set cid to "any" type but
-// want the customerId to equal cid as only a "number" type.
+
+
+
+// Type assertion - explicitly tell the compiler to treat an entity as a
+// different type. Two ways of doing this are as follows
 let cid: any = 1;
-// let customerId = <number>cid // Syntax 1
-let customerId = cid as number; // Syntax 2
+let customerId = cid as number; // Syntax 1
+// let customerId = <number>cid // Syntax 2
 
-// Functions (parameters must have a type, but can change in config)
-// Type 1: 1st parameter
-// Type 2: 2nd paramter
-// Type 3: return value
+
+
+
+// Functions - paramters must have a type. Define return value type
+// after the function signature
 function addNum(x: number, y: number): number {
   return x + y;
 }
@@ -79,3 +103,25 @@ function addNum(x: number, y: number): number {
 function log(message: string | number): void {
   console.log(message);
 }
+
+
+
+
+// Interfaces - define custom types or specific structures for objects
+interface UserInterface {
+  id: number;
+  name: string;
+}
+
+const user1: UserInterface = {
+  id: 1,
+  name: 'John',
+};
+
+
+
+
+// Custom types - directly define your own types. Can use primatives and
+// unions
+type Point = number | string;
+const p1: Point = 1;
