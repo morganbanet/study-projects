@@ -65,3 +65,17 @@ const user = {
 let cid: any = 1;
 // let customerId = <number>cid // Syntax 1
 let customerId = cid as number; // Syntax 2
+
+// Functions (parameters must have a type, but can change in config)
+// Type 1: 1st parameter
+// Type 2: 2nd paramter
+// Type 3: return value
+function addNum(x: number, y: number): number {
+  return x + y;
+}
+
+// Might not always have a return value from a function, so use void
+// type instead
+function log(message: string | number): void {
+  console.log(message);
+}
