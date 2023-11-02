@@ -84,10 +84,14 @@ const user2: {
 
 
 // Type assertion - explicitly tell the compiler to treat an entity as a
-// different type. Two ways of doing this are as follows
+// different type
 let cid: any = 1;
-let customerId = cid as number; // Syntax 1
-// let customerId = <number>cid // Syntax 2
+
+// Syntax 1
+let customerId = cid as number;
+
+// Syntax 2
+let customerId2 = <number>cid
 
 
 
@@ -107,10 +111,20 @@ function log(message: string | number): void {
 
 
 
-// Interfaces - define custom types or specific structures for objects
+// Custom types - directly define your own types. Can use primatives and
+// unions
+type Point = number | string;
+const p1: Point = 1;
+
+
+
+
+// Interfaces - define types for specific structures. Structures using
+// the interface must comply with the structure defined within it
 interface UserInterface {
-  id: number;
+  readonly id: number;
   name: string;
+  age?: number; // "?" makes optional
 }
 
 const user1: UserInterface = {
@@ -121,7 +135,71 @@ const user1: UserInterface = {
 
 
 
-// Custom types - directly define your own types. Can use primatives and
-// unions
-type Point = number | string;
-const p1: Point = 1;
+// Interfaces with functions
+interface MathFunc {
+  (x: number, y: number): number
+}
+
+const add: MathFunc = (x: number, y: number ): number => x + y
+const sub: MathFunc = (x: number, y: number): number => x - y
+
+
+
+
+// Interface with classes - includes return values of class methods
+interface PersonInterface {
+  id: number,
+  name: string,
+  age?: number,
+  register(): string
+}
+
+// Class uses "implements" method to apply interface
+class Person implements PersonInterface {
+  id: number
+  name: string
+
+  // Access modifiers:
+  // - Private: only available within the class
+  // - Protected: only available within the class or inherited classes
+  // - Public: Available everywhere
+
+  constructor(id: number, name: string) {
+    this.id = id
+    this.name = name
+  }
+
+  register() {
+    return `${this.name} is now registered`
+  }
+}
+
+const vincent = new Person(1, 'Van Goth');
+const micheal = new Person(2, 'Michealangelo')
+
+
+
+
+// Class inheritence (subclass)
+class Employee extends Person {
+  position: string
+
+  constructor(id: number, name: string, position: string) {
+    super(id, name);
+    this.position = position;
+  }
+}
+
+const ada = new Employee(3, 'Ada Lovelace', 'Developer');
+
+
+
+
+// Generics - used to build reusable components
+function getArray<T>(items: T[]): T[] {
+  return new Array().concat(items);
+}
+
+let numArray = getArray<number>([1, 2, 3, 4])
+let strArray = getArray<string>(['John', 'Sarah', 'Jane', 'Smith'])
+
