@@ -13,3 +13,19 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+ul {
+  margin: auto;
+  max-width: 656px;
+  padding: 0;
+}
+
+li {
+  margin: auto;
+  color: black;
+  list-style: none;
+}
+
+input {
+  color: black;
+}
