@@ -1,5 +1,6 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
 import { storiesReducer, Item, List, SearchForm, InputWithLabel } from './App';
 
@@ -53,5 +54,21 @@ describe('storiesReducer', () => {
     };
 
     expect(newState).toStrictEqual(expectedState);
+  });
+});
+
+describe('Item', () => {
+  it('renders all properties', () => {
+    // Render a component to test, and pass in a prop
+    render(<Item item={storyOne} />);
+
+    expect(screen.getByText('Jordan Walke')).toBeInTheDocument();
+    expect(screen.getByText('React')).toHaveAttribute(
+      'href',
+      'https://reactjs.org/'
+    );
+
+    // Output what has been rendered in jsdoms environment
+    screen.debug();
   });
 });
