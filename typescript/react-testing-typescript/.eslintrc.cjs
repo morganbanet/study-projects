@@ -15,4 +15,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
-}
+  test: {
+    environment: 'jsdom',
+  },
+};
