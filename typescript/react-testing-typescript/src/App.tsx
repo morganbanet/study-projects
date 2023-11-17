@@ -1,4 +1,10 @@
+import Application from './components/Application/Application';
+
 function App() {
-  return <div>App</div>;
+  return (
+    <div className="App">
+      <Application />
+    </div>
+  );
 }
 export default App;

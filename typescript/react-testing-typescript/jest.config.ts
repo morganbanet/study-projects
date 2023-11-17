@@ -2,7 +2,7 @@ export default {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/config/testConfig.js',
+    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/config/testConfig.js',
   },
 
   // Process *.tsx files with ts-jest
