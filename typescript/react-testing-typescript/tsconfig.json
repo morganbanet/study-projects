@@ -23,6 +23,6 @@
     // Jest warning
     "esModuleInterop": true
   },
-  "include": ["src"],
+  "include": ["src", "./setupTests.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

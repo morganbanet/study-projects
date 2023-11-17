@@ -10,6 +10,9 @@ export default {
     '^.+\\.tsx?$': 'ts-jest',
   },
 
+  // Set global imports for Jest related packages (ie, js-dom)
+  setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+
   // Coverage cmd will fail if under 80% or more than 10 uncovered stmts
   coverageThreshold: {
     global: {

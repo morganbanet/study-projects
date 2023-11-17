@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom'; // Extends Jest with DOM methods
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
