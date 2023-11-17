@@ -1,5 +1,4 @@
 interface Props {
-  children?: React.ReactNode;
   name?: string;
 }
 
