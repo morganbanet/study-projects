@@ -1,8 +1,6 @@
-interface Props {
-  name?: string;
-}
+import { GreetProps } from './Greet.types';
 
-function greet({ name }: Props) {
-  return <div>Hello {name}</div>;
+function Greet({ name }: GreetProps) {
+  return <div>Hello {name ? name : 'Guest'}</div>;
 }
-export default greet;
+export default Greet;
