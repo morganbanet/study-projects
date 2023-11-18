@@ -3,8 +3,8 @@ import Application from './Application';
 
 describe('Application', () => {
   it('Renders correctly', () => {
-    /** -- RTL methods for getBy... ---
-     * getByRole (aria attributes)
+    /** --- RTL queries in priority order ----
+     * getByRole (aria attributes, can use name option)
      * getByLabelText (find element associated with a label)
      * getByPlaceHolderText (find element by it's placeholder text)
      * getByText (find paragraphs, divs, and spans)
@@ -17,6 +17,12 @@ describe('Application', () => {
      * May of these also accept an options argument (ie, name, selector)
      */
 
+    /** --- RTL getAllBy queries
+     * getAllBy return an array of all matching nodes for a query, and
+     * throws an error if no elements match. Use this with the RTL
+     * queries above.
+     */
+
     render(<Application />);
 
     const pageHeading = screen.getByRole('heading', { level: 1 });
@@ -25,7 +31,9 @@ describe('Application', () => {
     const sectionHeading = screen.getByRole('heading', { level: 2 });
     expect(sectionHeading).toBeInTheDocument();
 
-    const paragraphElement = screen.getByText('All fields are mandatory');
+    const paragraphElement = screen.getByText(
+      (content) => content.startsWith('All') // Custom function
+    );
     expect(paragraphElement).toBeInTheDocument();
 
     const closeElement = screen.getByTitle('close');
