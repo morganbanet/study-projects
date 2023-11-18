@@ -3,6 +3,20 @@ import Application from './Application';
 
 describe('Application', () => {
   it('Renders correctly', () => {
+    /** -- RTL methods for getBy... ---
+     * getByRole (aria attributes)
+     * getByLabelText (find element associated with a label)
+     * getByPlaceHolderText (find element by it's placeholder text)
+     * getByText (find paragraphs, divs, and spans)
+     * getByDisplayValue (find input, textarea, or select elements)
+     * getByAltTextText (find img, input, and area by their alt text)
+     * getByTitle (find element by title attribute)
+     * getByTestId (find element by testid attribute)
+     *
+     * getByRole should be your first go-to method
+     * May of these also accept an options argument (ie, name, selector)
+     */
+
     render(<Application />);
 
     const pageHeading = screen.getByRole('heading', { level: 1 });
@@ -11,8 +25,29 @@ describe('Application', () => {
     const sectionHeading = screen.getByRole('heading', { level: 2 });
     expect(sectionHeading).toBeInTheDocument();
 
+    const paragraphElement = screen.getByText('All fields are mandatory');
+    expect(paragraphElement).toBeInTheDocument();
+
+    const closeElement = screen.getByTitle('close');
+    expect(closeElement).toBeInTheDocument();
+
+    const imageElement = screen.getByAltText('a person with a laptop');
+    expect(imageElement).toBeInTheDocument();
+
+    const customElement = screen.getByTestId('custom-element');
+    expect(customElement).toBeInTheDocument();
+
     const nameElement = screen.getByRole('textbox', { name: 'Name' });
     expect(nameElement).toBeInTheDocument();
+
+    const nameElement2 = screen.getByLabelText('Name', { selector: 'input' });
+    expect(nameElement2).toBeInTheDocument();
+
+    const nameElement3 = screen.getByPlaceholderText('Fullname');
+    expect(nameElement3).toBeInTheDocument();
+
+    const nameElement4 = screen.getByDisplayValue('John Doe');
+    expect(nameElement4).toBeInTheDocument();
 
     const bioElement = screen.getByRole('textbox', { name: 'Bio' });
     expect(bioElement).toBeInTheDocument();
@@ -22,6 +57,11 @@ describe('Application', () => {
 
     const termsElement = screen.getByRole('checkbox');
     expect(termsElement).toBeInTheDocument();
+
+    const termsElement2 = screen.getByLabelText(
+      'I agree to the terms and conditions'
+    );
+    expect(termsElement2).toBeInTheDocument();
 
     const submitButtonElement = screen.getByRole('button');
     expect(submitButtonElement).toBeInTheDocument();
