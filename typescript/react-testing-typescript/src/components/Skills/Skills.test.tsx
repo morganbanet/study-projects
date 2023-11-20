@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, logRoles } from '@testing-library/react';
 import Skills from './Skills';
 
 // --- RTL Queries ---
@@ -69,10 +69,23 @@ describe('Skills', () => {
   // DOM to begin with but will render after some time. For instance,
   // data fetched from a server wil be rendered after a few milliseconds
 
+  // --- Manual Queries ---
+  // It is possible to use the regular querySelector DOM API to find
+  // elements. This is not recommend however, as the attributes used
+  // to make these queries are not visible to the user. Always try to
+  // query by using the three query types offered by RTL (see top
+  // comment).
+
   // Both of these require async/await as they return a promise
   // They can take a third argument to extend the timeout
-  it('Eventually display Start Learning button', async () => {
-    render(<Skills skills={skills} />);
+  it('Display the start learning button eventually', async () => {
+    const view = render(<Skills skills={skills} />);
+
+    // View list of aria roles currently in the DOM
+    logRoles(view.container);
+
+    // visualize the DOM before Start Learning button is present
+    // screen.debug();
 
     const startLearningButton = await screen.findByRole(
       'button',
@@ -82,13 +95,9 @@ describe('Skills', () => {
       { timeout: 2000 } // Extend the default timeout
     );
 
+    // Visualize the DOM after Start Learning button is present
+    // screen.debug();
+
     expect(startLearningButton).toBeInTheDocument();
   });
-
-  // --- Manual Queries ---
-  // It is possible to use the regular querySelector DOM API to find
-  // elements. This is not recommend however, as the attributes used
-  // to make these queries are not visible to the user. Always try to
-  // query by using the three query types offered by RTL (see top
-  // comment).
 });
