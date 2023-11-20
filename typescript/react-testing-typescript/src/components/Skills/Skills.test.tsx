@@ -1,6 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import Skills from './Skills';
 
+// --- RTL Queries ---
+// getBy & getAllBy
+// queryBy & queryAllBy
+// findBy & findAllBy
+
 describe('Skills', () => {
   /** --- RTL TextMatch ---
    * The first argument in an RTL query is not a type of string. It is
@@ -10,13 +15,13 @@ describe('Skills', () => {
 
   const skills = ['HTML', 'CSS', 'JavaScript'];
 
-  it('Renders correctly', () => {
+  it('Render correctly', () => {
     render(<Skills skills={skills} />);
     const listElement = screen.getByRole('list'); // Get ul tag
     expect(listElement).toBeInTheDocument();
   });
 
-  it('renders a list of skills', () => {
+  it('Render a list of skills', () => {
     render(<Skills skills={skills} />);
 
     // getByRole throws an error if multiple elements are found. The
@@ -27,4 +32,63 @@ describe('Skills', () => {
     // Don't use hardcoded values inside toHaveLength
     expect(listItemElements).toHaveLength(skills.length);
   });
+
+  it('Render the Login button', () => {
+    render(<Skills skills={skills} />);
+    const loginButton = screen.getByRole('button', { name: 'Login' });
+    expect(loginButton).toBeInTheDocument();
+  });
+
+  // --- queryBy & queryAllBy ---
+  // Returns a matching node for a query, and null if no match
+  // Useful for asserting elements currently not present
+  // Throws an error if more than one match is found
+  // queryAllBy returns an array of all matching nodes
+  // queryAllBy returns an empty array if no matching nodes.
+  it('Does not render the Start Learning button', () => {
+    render(<Skills skills={skills} />);
+
+    // queryByRole will return null here as there is no match
+    const startLearningButton = screen.queryByRole('button', {
+      name: 'Start learning',
+    });
+
+    // "not" will assert that toBeInTheDocument should be falsy
+    expect(startLearningButton).not.toBeInTheDocument();
+  });
+
+  // --- findBy & findAllBy ---
+  // findBy returns a promise which resolves when an element
+  // is found matching the query. The promise is rejected after a
+  // default of 1000ms (1s), or if no element is found, or multiple
+  // elements are found. FindAllBy will resolve to an array or matching
+  // elements.
+
+  // **
+  // These queries are useful for instance if elements are not in the
+  // DOM to begin with but will render after some time. For instance,
+  // data fetched from a server wil be rendered after a few milliseconds
+
+  // Both of these require async/await as they return a promise
+  // They can take a third argument to extend the timeout
+  it('Eventually display Start Learning button', async () => {
+    render(<Skills skills={skills} />);
+
+    const startLearningButton = await screen.findByRole(
+      'button',
+      {
+        name: 'Start learning',
+      },
+      { timeout: 2000 } // Extend the default timeout
+    );
+
+    expect(startLearningButton).toBeInTheDocument();
+  });
+
+  // --- Manual Queries ---
+  // It is possible to use the regular querySelector DOM API to find
+  // elements. This is not recommend however, as the attributes used
+  // to make these queries are not visible to the user. Always try to
+  // query by using the three query types offered by RTL (see top
+  // comment).
 });
