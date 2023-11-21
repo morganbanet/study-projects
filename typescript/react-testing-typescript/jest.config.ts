@@ -1,5 +1,6 @@
 export default {
   preset: 'ts-jest',
+  injectGlobal: true,
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/config/testConfig.js',
