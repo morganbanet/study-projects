@@ -1,12 +1,13 @@
-import { Counter } from './components/Counter/Counter';
+import AppProviders from './providers/AppProviders';
+import MuiMode from './components/Mui/MuiMode';
 
 function App() {
-  const skills = ['Html', 'Css', 'JavaScript'];
-
   return (
-    <div className="App">
-      <Counter />
-    </div>
+    <AppProviders>
+      <div className="App">
+        <MuiMode />
+      </div>
+    </AppProviders>
   );
 }
 export default App;

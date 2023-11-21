@@ -70,14 +70,49 @@ describe('Counter', () => {
     const countElement = screen.getByRole('heading');
     expect(countElement).toHaveTextContent('2');
   });
+
+  it('Renders a count of 10 after clicking the set button', async () => {
+    user.setup();
+    render(<Counter />);
+
+    const amountInput = screen.getByRole('spinbutton'); // Number input
+    await user.type(amountInput, '10'); // Type the number 10
+    expect(amountInput).toHaveValue(10); // Assert input value is 10
+
+    const setButton = screen.getByRole('button', { name: 'Set' });
+    await user.click(setButton); // Click the button to set amount to 10
+
+    const countElement = screen.getByRole('heading');
+    expect(countElement).toHaveTextContent('10');
+  });
+
+  it('Elements are focused in the right order', async () => {
+    user.setup();
+    render(<Counter />);
+
+    const incrementButton = screen.getByRole('button', { name: 'Increment' });
+    const amountInput = screen.getByRole('spinbutton');
+    const setButton = screen.getByRole('button', { name: 'Set' });
+
+    await user.tab();
+    expect(incrementButton).toHaveFocus();
+
+    await user.tab();
+    expect(amountInput).toHaveFocus();
+
+    await user.tab();
+    expect(setButton).toHaveFocus();
+  });
 });
 
 /** --- Pointer Interactions (user-event library) ---
- * Convenience APIs - What is typically used when writing tests. These
+ ** Convenience APIs - What is typically used when writing tests. These
  * methods internally calls the Pointer API (ie, click() is a
- * convenience API that internally calls the pointer API). The
- * convenience APIs should always be used over the pointer APIs as they
- * are easier to read and write.
+ * convenience API that internally calls the pointer API).
+ *
+ * The convenience APIs should always be used over the pointer APIs as
+ * they are easier to read and write. Also note that all APIs from
+ * user-event are asynchronous.
  *
  * click()
  * dblClick()
@@ -93,4 +128,26 @@ describe('Counter', () => {
  * pointer('[MouseLeft][MouseRight]'}) - Pass string if keys is the only arg
  * pointer('[MouseLeft>]') - Click & hold
  * pointer('[/MouseLeft]') - Release held button
+ */
+
+/** --- Keyboard Interactions ---
+ ** Utility APIs **
+ * type()
+ * clear() - Used to clear an editable element
+ * selectOptions() - Select elements in a dropdown or listbox
+ * deselectOptions() - Deselect elements in a dropdown or listbox
+ * upload() - Simulate clicking a file input field and selecting a file
+ *
+ * * Convienience APIs **
+ * tab() - The only Convenience API for keyboard interactions
+ *
+ * * Clipboard APIs **
+ * copy()
+ * cut()
+ * paste()
+ *
+ * * Keyboard APIs **
+ * The keyboard APIs accept a string describing the key actions
+ * keyboard('foo') // translates to: f, o, o
+ * keyboard('{Shift>}A{/Shift}') // translates to: Shift(down), A, Shift(up)
  */
