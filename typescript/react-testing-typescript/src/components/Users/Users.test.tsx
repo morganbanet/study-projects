@@ -25,4 +25,13 @@ describe('Users', () => {
     const textElement = screen.getByText('Users');
     expect(textElement).toBeInTheDocument();
   });
+
+  it('renders a list of users', async () => {
+    render(<Users />);
+
+    // RTL findAllBy queries are async
+    const users = await screen.findAllByRole('listitem');
+
+    expect(users).toHaveLength(3);
+  });
 });

@@ -1,4 +1,4 @@
-// src/mocks/node.js
+// Mock Service Worker setup
 import { setupServer } from 'msw/node';
 import { handlers } from './handlers';
 
