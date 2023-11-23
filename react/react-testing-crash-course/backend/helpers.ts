@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import { unless } from "express-unless";
 import { set } from "lodash";
 import { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator";
@@ -89,9 +90,9 @@ const awsCognitoJwtConfig = {
   algorithms: ["RS256"],
 };
 
-export const checkAuth0Jwt = jwt(auth0JwtConfig).unless({ path: ["/testData/*"] });
-export const checkCognitoJwt = jwt(awsCognitoJwtConfig).unless({ path: ["/testData/*"] });
-export const checkGoogleJwt = jwt(googleJwtConfig).unless({ path: ["/testData/*"] });
+export const checkAuth0Jwt = jwt(auth0JwtConfig);
+export const checkCognitoJwt = jwt(awsCognitoJwtConfig);
+export const checkGoogleJwt = jwt(googleJwtConfig);
 
 export const ensureAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {
