@@ -124,3 +124,17 @@ describe("Item", () => {
     expect(handleRemoveItem).toHaveBeenCalledTimes(1);
   });
 });
+
+describe("SearchForm", () => {
+  const searchFormProps = {
+    searchTerm: "React",
+    onSearchInput: vi.fn(),
+    onSearchSubmit: vi.fn(),
+  };
+
+  it("renders the input field with its value", () => {
+    render(<SearchForm {...searchFormProps} />);
+
+    expect(screen.getByDisplayValue("React")).toBeInTheDocument();
+  });
+});
