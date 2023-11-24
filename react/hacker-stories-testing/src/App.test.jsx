@@ -1,4 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
+
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 
 import App, {
   storiesReducer,
@@ -87,5 +89,38 @@ describe("storiesReducer", () => {
     };
 
     expect(newState).toStrictEqual(expectedState);
+  });
+});
+
+describe("Item", () => {
+  it("renders all properties", () => {
+    render(<Item item={storyOne} />);
+
+    expect(screen.getByText("Jordan Walke")).toBeInTheDocument();
+    expect(screen.getByText("React")).toHaveAttribute(
+      "href",
+      "https://reactjs.org/"
+    );
+  });
+
+  it("renders a clickable dismiss button", () => {
+    render(<Item item={storyOne} />);
+
+    expect(screen.getByRole("button")).toBeInTheDocument();
+  });
+
+  it("clicking the dismiss button calls the callback handler", () => {
+    // vi.fn() creates a mock function
+    // Returns undefined if no function given
+
+    // arrange
+    const handleRemoveItem = vi.fn();
+    render(<Item item={storyOne} onRemoveItem={handleRemoveItem} />);
+
+    // act
+    fireEvent.click(screen.getByRole("button"));
+
+    // assert
+    expect(handleRemoveItem).toHaveBeenCalledTimes(1);
   });
 });
