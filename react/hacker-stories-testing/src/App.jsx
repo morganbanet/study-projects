@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef, useReducer, useCallback } from 'react';
-import axios from 'axios';
+import { useState, useEffect, useRef, useReducer, useCallback } from "react";
+import axios from "axios";
 
 // Custom hook
 const useStorageState = (key, initialState) => {
@@ -15,26 +15,26 @@ const useStorageState = (key, initialState) => {
 // Reducer function
 const storiesReducer = (state, action) => {
   switch (action.type) {
-    case 'STORIES_FETCH_INIT':
+    case "STORIES_FETCH_INIT":
       return {
         ...state,
         isLoading: true,
         isError: false,
       };
-    case 'STORIES_FETCH_SUCCESS':
+    case "STORIES_FETCH_SUCCESS":
       return {
         ...state,
         isLoading: false,
         isError: false,
         data: action.payload,
       };
-    case 'STORIES_FETCH_FAILURE':
+    case "STORIES_FETCH_FAILURE":
       return {
         ...state,
         isLoading: false,
         isError: true,
       };
-    case 'REMOVE_STORY':
+    case "REMOVE_STORY":
       return {
         ...state,
         data: state.data.filter(
@@ -46,10 +46,10 @@ const storiesReducer = (state, action) => {
   }
 };
 
-const API_ENDPOINT = 'http://hn.algolia.com/api/v1/search?query=';
+const API_ENDPOINT = "http://hn.algolia.com/api/v1/search?query=";
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useStorageState('search', '');
+  const [searchTerm, setSearchTerm] = useStorageState("search", "");
   const [url, setUrl] = useState(`${API_ENDPOINT}${searchTerm}`);
 
   const [stories, dispatchStories] = useReducer(storiesReducer, {
@@ -61,17 +61,17 @@ const App = () => {
   // useCallback Hook, creates a memoized function each time it's
   // dependency changes
   const handleFetchStories = useCallback(async () => {
-    dispatchStories({ type: 'STORIES_FETCH_INIT' });
+    dispatchStories({ type: "STORIES_FETCH_INIT" });
 
     try {
       const result = await axios.get(url);
 
       dispatchStories({
-        type: 'STORIES_FETCH_SUCCESS',
+        type: "STORIES_FETCH_SUCCESS",
         payload: result.data.hits,
       });
     } catch (error) {
-      dispatchStories({ type: 'STORIES_FETCH_FAILURE' });
+      dispatchStories({ type: "STORIES_FETCH_FAILURE" });
     }
   }, [url]);
 
@@ -85,7 +85,7 @@ const App = () => {
     console.log(item);
 
     dispatchStories({
-      type: 'REMOVE_STORY',
+      type: "REMOVE_STORY",
       payload: item,
     });
   };
@@ -147,7 +147,7 @@ const InputWithLabel = ({
   children,
   id,
   value,
-  type = 'text',
+  type = "text",
   onInputChange,
   isFocused,
 }) => {
@@ -202,3 +202,5 @@ const Item = ({ item, onRemoveItem }) => {
 };
 
 export default App;
+
+export { storiesReducer, SearchForm, InputWithLabel, List, Item };
