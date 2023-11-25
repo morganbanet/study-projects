@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from "vitest";
-
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import axios from "axios";
+vi.mock("axios");
 
 import App, {
   storiesReducer,
@@ -105,7 +106,6 @@ describe("Item", () => {
 
   it("renders a clickable dismiss button", () => {
     render(<Item item={storyOne} />);
-
     expect(screen.getByRole("button")).toBeInTheDocument();
   });
 
@@ -134,7 +134,44 @@ describe("SearchForm", () => {
 
   it("renders the input field with its value", () => {
     render(<SearchForm {...searchFormProps} />);
-
     expect(screen.getByDisplayValue("React")).toBeInTheDocument();
+  });
+
+  it("renders the correct label", () => {
+    render(<SearchForm {...searchFormProps} />);
+    expect(screen.getByLabelText(/Search/)).toBeInTheDocument();
+  });
+
+  it("calls onSearchInput when the input field changes", () => {
+    render(<SearchForm {...searchFormProps} />);
+
+    // Change the search form value from 'React' to 'Redux'
+    fireEvent.change(screen.getByDisplayValue("React"), {
+      target: { value: "Redux" },
+    });
+
+    expect(searchFormProps.onSearchInput).toHaveBeenCalledTimes(1);
+  });
+
+  it("calls onSearchSubmit when submit button is clicked", () => {
+    render(<SearchForm {...searchFormProps} />);
+
+    // Submit the form by clicking the form button
+    fireEvent.submit(screen.getByRole("button"));
+
+    expect(searchFormProps.onSearchSubmit).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("App", () => {
+  it("succeeds fetching data", () => {
+    const promise = Promise.resolve({
+      data: {
+        hits: stories,
+      },
+    });
+    axios.get.mockImplementationOnce(() => promise);
+    render(<App />);
+    screen.debug();
   });
 });
