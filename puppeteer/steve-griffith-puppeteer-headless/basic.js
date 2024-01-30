@@ -1,7 +1,7 @@
 // puppeteer and headless chrome (or firefox)
 // npm init -y
 // add "type":"module" to package.json
-// npm install puppeteer@19.11.1
+// npm install puppeteer@19.5.2
 
 import puppeteer from 'puppeteer';
 
