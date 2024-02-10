@@ -3,5 +3,8 @@
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
     "jsdom": "^22.1.0"
+  },
+  "dependencies": {
+    "create-react-app": "^5.0.1"
   }
 }
