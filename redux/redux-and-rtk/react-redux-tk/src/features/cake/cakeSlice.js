@@ -30,4 +30,4 @@ export default cakeSlice.reducer;
 
 // Should be named export. This is how we dispatch actions from around
 // our application
-export const cakeActions = cakeSlice.actions;
+export const { ordered, restocked } = cakeSlice.actions;

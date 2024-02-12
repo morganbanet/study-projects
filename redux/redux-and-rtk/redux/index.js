@@ -81,6 +81,11 @@ const iceCreamReducer = (state = initialIceCreamState, action) => {
         ...state,
         numOfIceCreams: state.numOfIceCreams + action.payload,
       };
+    case 'CAKE_ORDERED': // All "CAKE_ORDERED" will run in all reducers
+      return {
+        ...state,
+        numOfIceCreams: state.numOfIceCreams - 1,
+      };
     default:
       return state;
   }
@@ -93,15 +98,15 @@ const rootReducer = combineReducers({
 });
 
 // Create a store using createStore and pass in the reducer method
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(rootReducer);
 
 // Get the current state of the app
 console.log(`Initial state: `, store.getState());
 
 // Subscribe to changes in the store
-// const unsubscribe = store.subscribe(() =>
-//   console.log(`Updated state: `, store.getState())
-// );
+const unsubscribe = store.subscribe(() =>
+  console.log(`Updated state: `, store.getState())
+);
 
 // Dispatch an action to the state
 // store.dispatch(orderCake());
@@ -125,6 +130,6 @@ actions.orderIceCream();
 actions.restockIceCream(2);
 
 // Unsubscribe to changes in the store
-// unsubscribe();
+unsubscribe();
 
 store.dispatch(orderCake());
